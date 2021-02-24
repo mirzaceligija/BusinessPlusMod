@@ -1,0 +1,20 @@
+{
+	"item.businessplusmod.coin1_item": "1 cent",
+	"item.businessplusmod.coin5_item": "5 cents",
+	"item.businessplusmod.coin10_item": "10 cents",
+	"item.businessplusmod.coin25_item": "25 cents",
+	"item.businessplusmod.coin50_item": "50 cents",
+	"item.businessplusmod.dollar1_item": "1 dollar",
+	"item.businessplusmod.dollar5_item": "5 dollars",
+	"item.businessplusmod.dollar10_item": "10 dollars",
+	"item.businessplusmod.dollar20_item": "20 dollars",
+	"item.businessplusmod.dollar50_item": "50 dollars",
+	"item.businessplusmod.dollar100_item": "100 dollars",
+	
+	"block.businessplusmod.def_block": "Def Block",
+	"block.businessplusmod.vault_chest": "Vault Chest",
+	
+	"container.vault_chest": "Vault Chest",
+	
+	"itemGroup.businessplustab": "Business Plus"
+}

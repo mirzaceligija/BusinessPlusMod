@@ -1,0 +1,16 @@
+{
+  "replace":false,
+  "values": [
+      "businessplusmod:coin1_item",
+      "businessplusmod:coin5_item",
+      "businessplusmod:coin10_item",
+      "businessplusmod:coin25_item",
+      "businessplusmod:coin50_item",
+      "businessplusmod:dollar1_item",
+      "businessplusmod:dollar5_item",
+      "businessplusmod:dollar10_item",
+      "businessplusmod:dollar20_item",
+      "businessplusmod:dollar50_item",
+      "businessplusmod:dollar100_item"
+  ]
+}

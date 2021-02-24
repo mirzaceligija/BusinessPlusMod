@@ -1,0 +1,7 @@
+{
+  "replace":false,
+  "values": [
+      "businessplusmod:def_block",
+      "businessplusmod:vault_chest"
+  ]
+}
