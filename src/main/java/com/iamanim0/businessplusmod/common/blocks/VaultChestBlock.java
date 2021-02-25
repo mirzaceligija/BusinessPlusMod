@@ -39,6 +39,7 @@ public class VaultChestBlock extends Block {
 	@Override
 	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player,
 			Hand handIn, BlockRayTraceResult hit) {
+		
 		// TODO Auto-generated method stub
 		if(!worldIn.isRemote) {
 			TileEntity tile = worldIn.getTileEntity(pos);

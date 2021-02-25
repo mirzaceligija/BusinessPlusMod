@@ -1,3 +1,8 @@
 {
-	"parent": "businessplusmod:block/vault_chest"
+	"parent": "businessplusmod:block/vault_chest",
+	"texture_size": [128, 128],
+	"textures": {
+		"0": "businessplusmod:blocks/vault_chest",
+		"particle": "businessplusmod:blocks/vault_chest"
+	}
 }

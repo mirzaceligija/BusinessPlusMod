@@ -52,10 +52,23 @@ public class ItemInit {
 	public static final RegistryObject<CurrencyItem> DOLLAR100_ITEM = ITEMS.register("dollar100_item", 
 			() -> new CurrencyItem(new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP), 100.00));
 	
-	/*BLOCK ITEMS*/
-	public static final RegistryObject<BlockItem> DEF_BLOCK = ITEMS.register("def_block", () ->
-		new BlockItem(BlockInit.DEF_BLOCK.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
+	public static final RegistryObject<CurrencyItem> DOLLAR500_ITEM = ITEMS.register("dollar500_item", 
+			() -> new CurrencyItem(new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP), 500.00));
 	
+	public static final RegistryObject<CurrencyItem> DOLLAR10000_ITEM = ITEMS.register("dollar10000_item", 
+			() -> new CurrencyItem(new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP), 10000.00));
+	
+	public static final RegistryObject<CurrencyItem> DOLLAR50000_ITEM = ITEMS.register("dollar50000_item", 
+			() -> new CurrencyItem(new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP), 10000.00));
+	
+	public static final RegistryObject<CurrencyItem> DOLLAR1000000_ITEM = ITEMS.register("dollar1000000_item", 
+			() -> new CurrencyItem(new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP), 1000000.00));
+	
+	//Licence
+	public static final RegistryObject<Item> LICENCE_ITEM = ITEMS.register("licence_item", 
+			() -> new Item(new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
+	
+	/*BLOCK ITEMS*/
 	public static final RegistryObject<BlockItem> VAULT_CHEST_BLOCK = ITEMS.register("vault_chest", () ->
 	new BlockItem(BlockInit.VAULT_CHEST.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
 }

@@ -18,15 +18,11 @@ public class BlockInit {
 
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, BusinessPlusMod.MOD_ID);
 	
-	public static final RegistryObject<Block> DEF_BLOCK = BLOCKS.register("def_block",
-			() -> new Block(AbstractBlock.Properties.create(Material.IRON, MaterialColor.BLUE)
+	public static final RegistryObject<Block> VAULT_CHEST = BLOCKS.register("vault_chest", 
+			() -> new VaultChestBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.BLUE)
 					.hardnessAndResistance(15f, 30f)
 					.harvestTool(ToolType.PICKAXE)
 					.harvestLevel(2)
 					.sound(SoundType.ANVIL)));
-	
-	
-	public static final RegistryObject<Block> VAULT_CHEST = BLOCKS.register("vault_chest", 
-			() -> new VaultChestBlock(Block.Properties.from(BlockInit.DEF_BLOCK.get())));	
 
 }

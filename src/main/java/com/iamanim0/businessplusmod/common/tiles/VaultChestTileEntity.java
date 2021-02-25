@@ -13,7 +13,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -43,8 +42,7 @@ public class VaultChestTileEntity extends LockableLootTileEntity {
 		super(typeIn);
 		// TODO Auto-generated constructor stub
 		
-		setInventorySlotContents(0, new ItemStack(Items.APPLE.getItem(), 1));
-		setInventorySlotContents(1, new ItemStack(Items.GOLDEN_APPLE.getItem(), 1));
+		//setInventorySlotContents(1, new ItemStack(Items.GOLDEN_APPLE.getItem(), 1));
 	}
 	
 	public VaultChestTileEntity() {

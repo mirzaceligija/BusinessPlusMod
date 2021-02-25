@@ -1,0 +1,1 @@
+execute at @s run summon villager ~ ~ ~ {VillagerData:{profession:librarian,level:5,type:savanna},Invulnerable:1,NoAI:1,CustomName:"\"Government (Bank)\"",Offers:{Recipes:[{buy:{id:"businessplusmod:dollar10000_item",Count:1},sell:{id:"businessplusmod:licence_item",Count:1},rewardExp:1000b,maxUses:9999999}]}}

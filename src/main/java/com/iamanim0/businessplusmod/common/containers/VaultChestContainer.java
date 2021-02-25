@@ -5,7 +5,6 @@ import java.util.Objects;
 import com.iamanim0.businessplusmod.common.tiles.VaultChestTileEntity;
 import com.iamanim0.businessplusmod.core.init.BlockInit;
 import com.iamanim0.businessplusmod.core.init.ContainerTypeInit;
-
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;

@@ -10,9 +10,10 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
+
 public class VaultChestScreen extends ContainerScreen <VaultChestContainer> {
 	
-	private int totalValue = 0;
+	//private double totalValue = 0;
 
 	private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(BusinessPlusMod.MOD_ID, "textures/gui/vault_chest.png");
 	
@@ -36,9 +37,10 @@ public class VaultChestScreen extends ContainerScreen <VaultChestContainer> {
 	protected void drawGuiContainerForegroundLayer(MatrixStack matrixStack, int x, int y) {
 		// TODO Auto-generated method stub
 		//super.drawGuiContainerForegroundLayer(matrixStack, x, y);
-		this.font.drawString(matrixStack, getNarrationMessage(), 8.0f, 6.0f, 4210752);
+		//this.font.drawString(matrixStack, getNarrationMessage(), 8.0f, 6.0f, 4210752);
+		this.font.drawString(matrixStack, "Vault Chest", 8.0f, 6.0f, 4210752);
 		this.font.drawString(matrixStack, "Inventory", 8.0f, 91.0f, 4210752);
-		this.font.drawString(matrixStack, "TotalValue: " + this.totalValue, 35.0f, 6.0f, 4210752);
+		//this.font.drawString(matrixStack, "Total amount: " + this.totalValue, 8.0f, 6.0f, 4210752);
 		
 		/*
 		//this.font.drawString(this.playerInventory.getDisplayName()., 8.0f, 90.0f, 4210752);

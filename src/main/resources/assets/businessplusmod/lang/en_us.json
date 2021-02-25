@@ -10,8 +10,13 @@
 	"item.businessplusmod.dollar20_item": "20 dollars",
 	"item.businessplusmod.dollar50_item": "50 dollars",
 	"item.businessplusmod.dollar100_item": "100 dollars",
+	"item.businessplusmod.dollar500_item": "500 dollars",
+	"item.businessplusmod.dollar10000_item": "10 000 dollars",
+	"item.businessplusmod.dollar50000_item": "50 000 dollars",
+	"item.businessplusmod.dollar1000000_item": "1 million dollars",
 	
-	"block.businessplusmod.def_block": "Def Block",
+	"item.businessplusmod.licence_item": "Business Licence",
+	
 	"block.businessplusmod.vault_chest": "Vault Chest",
 	
 	"container.vault_chest": "Vault Chest",

@@ -111,7 +111,7 @@ public class BusinessPlusMod
 		
 		@Override
 		public ItemStack createIcon() {
-			return ItemInit.DOLLAR100_ITEM.get().getDefaultInstance();
+			return ItemInit.DOLLAR500_ITEM.get().getDefaultInstance();
 		}
 
 		@Override
@@ -128,7 +128,11 @@ public class BusinessPlusMod
 			items.add(ItemInit.DOLLAR20_ITEM.get().getDefaultInstance());
 			items.add(ItemInit.DOLLAR50_ITEM.get().getDefaultInstance());
 			items.add(ItemInit.DOLLAR100_ITEM.get().getDefaultInstance());
-			items.add(ItemInit.DEF_BLOCK.get().getDefaultInstance());
+			items.add(ItemInit.DOLLAR500_ITEM.get().getDefaultInstance());
+			items.add(ItemInit.DOLLAR10000_ITEM.get().getDefaultInstance());
+			items.add(ItemInit.DOLLAR50000_ITEM.get().getDefaultInstance());
+			items.add(ItemInit.DOLLAR1000000_ITEM.get().getDefaultInstance());
+			items.add(ItemInit.LICENCE_ITEM.get().getDefaultInstance());
 			items.add(ItemInit.VAULT_CHEST_BLOCK.get().getDefaultInstance());
 			//super.fill(items);
 		}
