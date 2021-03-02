@@ -2,6 +2,8 @@ package com.iamanim0.businessplusmod.core.init;
 
 import com.iamanim0.businessplusmod.BusinessPlusMod;
 import com.iamanim0.businessplusmod.common.containers.VaultChestContainer;
+import com.iamanim0.businessplusmod.common.containers.WalletContainer;
+import com.iamanim0.businessplusmod.common.containers.FirstBlockContainer;
 
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.fml.RegistryObject;
@@ -16,4 +18,9 @@ public class ContainerTypeInit {
 	public static final RegistryObject<ContainerType<VaultChestContainer>> VAULT_CHEST = 
 			CONTAINER_TYPES.register("vault_chest", () -> IForgeContainerType.create(VaultChestContainer::new));
 	
+	public static final RegistryObject<ContainerType<WalletContainer>> WALLET = 
+			CONTAINER_TYPES.register("wallet", () -> IForgeContainerType.create(WalletContainer::new));
+	
+	public static final RegistryObject<ContainerType<FirstBlockContainer>> FIRSTBLOCK = 
+			CONTAINER_TYPES.register("firstblock", () -> IForgeContainerType.create(FirstBlockContainer::new));
 }

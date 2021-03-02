@@ -1,7 +1,9 @@
 package com.iamanim0.businessplusmod.core.init;
 
 import com.iamanim0.businessplusmod.BusinessPlusMod;
+import com.iamanim0.businessplusmod.common.items.BusinessLicenceItem;
 import com.iamanim0.businessplusmod.common.items.CurrencyItem;
+import com.iamanim0.businessplusmod.common.items.WalletItem;
 
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -14,6 +16,13 @@ public class ItemInit {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, BusinessPlusMod.MOD_ID);
 	
 	/* ITEMS */
+	//Wallet
+	
+	
+	public static final RegistryObject<WalletItem> WALLET_ITEM = ITEMS.register("wallet_item", 
+			() -> new WalletItem(new Item.Properties().maxStackSize(1).group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
+			
+	
 	//Coins
 	
 	public static final RegistryObject<CurrencyItem> COIN1_ITEM = ITEMS.register("coin1_item", 
@@ -65,10 +74,16 @@ public class ItemInit {
 			() -> new CurrencyItem(new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP), 1000000.00));
 	
 	//Licence
-	public static final RegistryObject<Item> LICENCE_ITEM = ITEMS.register("licence_item", 
-			() -> new Item(new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
+	public static final RegistryObject<BusinessLicenceItem> LICENCE_ITEM = ITEMS.register("licence_item", 
+			() -> new BusinessLicenceItem(new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
 	
 	/*BLOCK ITEMS*/
 	public static final RegistryObject<BlockItem> VAULT_CHEST_BLOCK = ITEMS.register("vault_chest", () ->
 	new BlockItem(BlockInit.VAULT_CHEST.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
+	
+	public static final RegistryObject<BlockItem> MONEY_PILE_BLOCK = ITEMS.register("money_pile", () ->
+	new BlockItem(BlockInit.MONEY_PILE.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
+	
+	public static final RegistryObject<BlockItem> FIRST_BLOCK = ITEMS.register("firstblock", () ->
+	new BlockItem(BlockInit.FIRSTBLOCK.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
 }

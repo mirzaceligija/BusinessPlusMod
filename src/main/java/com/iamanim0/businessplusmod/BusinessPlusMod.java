@@ -17,6 +17,7 @@ import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -35,8 +36,9 @@ public class BusinessPlusMod
     private static final Logger LOGGER = LogManager.getLogger();
     public static final String MOD_ID = "businessplusmod";
     public static final ItemGroup BUSINESSPLUS_GROUP = new BusinessPlusGroup("businessplustab");
-
+    
     public BusinessPlusMod() {
+    	
     	IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
     	
     	bus.addListener(this::setup);
@@ -46,6 +48,7 @@ public class BusinessPlusMod
     	TileEntityTypeInit.TILE_ENTITY_TYPES.register(bus);
     	ContainerTypeInit.CONTAINER_TYPES.register(bus);
     	
+
     	// Register the setup method for mod loading
         //FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         // Register the enqueueIMC method for mod loading
@@ -117,6 +120,7 @@ public class BusinessPlusMod
 		@Override
 		public void fill(NonNullList<ItemStack> items) {
 			// TODO Auto-generated method stub
+			items.add(ItemInit.WALLET_ITEM.get().getDefaultInstance());
 			items.add(ItemInit.COIN1_ITEM.get().getDefaultInstance());
 			items.add(ItemInit.COIN5_ITEM.get().getDefaultInstance());
 			items.add(ItemInit.COIN10_ITEM.get().getDefaultInstance());
@@ -134,6 +138,8 @@ public class BusinessPlusMod
 			items.add(ItemInit.DOLLAR1000000_ITEM.get().getDefaultInstance());
 			items.add(ItemInit.LICENCE_ITEM.get().getDefaultInstance());
 			items.add(ItemInit.VAULT_CHEST_BLOCK.get().getDefaultInstance());
+			items.add(ItemInit.MONEY_PILE_BLOCK.get().getDefaultInstance());
+			items.add(ItemInit.FIRST_BLOCK.get().getDefaultInstance());
 			//super.fill(items);
 		}
     }

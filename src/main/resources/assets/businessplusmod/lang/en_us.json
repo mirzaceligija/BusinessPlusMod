@@ -16,10 +16,15 @@
 	"item.businessplusmod.dollar1000000_item": "1 million dollars",
 	
 	"item.businessplusmod.licence_item": "Business Licence",
+	"item.businessplusmod.wallet_item": "Wallet",
 	
+	"block.businessplusmod.firstblock": "First Block",
 	"block.businessplusmod.vault_chest": "Vault Chest",
+	"block.businessplusmod.money_pile": "Money Pile",
 	
+	"container.firstblock": "FirstBlock",
 	"container.vault_chest": "Vault Chest",
+	"container.wallet": "Wallet",
 	
 	"itemGroup.businessplustab": "Business Plus"
 }

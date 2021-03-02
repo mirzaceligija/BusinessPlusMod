@@ -1,7 +1,9 @@
 package com.iamanim0.businessplusmod.client.utils;
 
 import com.iamanim0.businessplusmod.BusinessPlusMod;
+import com.iamanim0.businessplusmod.client.screens.FirstBlockScreen;
 import com.iamanim0.businessplusmod.client.screens.VaultChestScreen;
+import com.iamanim0.businessplusmod.client.screens.WalletScreen;
 import com.iamanim0.businessplusmod.core.init.ContainerTypeInit;
 
 import net.minecraft.client.gui.ScreenManager;
@@ -17,6 +19,8 @@ public class ClientEventBusSubscriber {
 	@SubscribeEvent
 	public static void clientSetup(FMLClientSetupEvent event) {
 		ScreenManager.registerFactory(ContainerTypeInit.VAULT_CHEST.get(), VaultChestScreen::new);
-		
+		ScreenManager.registerFactory(ContainerTypeInit.WALLET.get(), WalletScreen::new);
+		ScreenManager.registerFactory(ContainerTypeInit.FIRSTBLOCK.get(), FirstBlockScreen::new);
 	}
+
 }

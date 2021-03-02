@@ -11,6 +11,10 @@
       "businessplusmod:dollar10_item",
       "businessplusmod:dollar20_item",
       "businessplusmod:dollar50_item",
-      "businessplusmod:dollar100_item"
+      "businessplusmod:dollar100_item",
+      "businessplusmod:dollar500_item",
+      "businessplusmod:dollar10000_item",
+      "businessplusmod:dollar50000_item",
+      "businessplusmod:dollar1000000_item"
   ]
 }

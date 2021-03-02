@@ -1,0 +1,8 @@
+{
+	"parent": "businessplusmod:block/money_pile",
+	"texture_size": [128, 128],
+	"textures": {
+		"0": "businessplusmod:blocks/money_pile",
+		"particle": "businessplusmod:blocks/money_pile"
+	}
+}

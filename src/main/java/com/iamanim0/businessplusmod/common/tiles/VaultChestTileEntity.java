@@ -10,17 +10,17 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -42,7 +42,14 @@ public class VaultChestTileEntity extends LockableLootTileEntity {
 		super(typeIn);
 		// TODO Auto-generated constructor stub
 		
-		//setInventorySlotContents(1, new ItemStack(Items.GOLDEN_APPLE.getItem(), 1));
+		setInventorySlotContents(0, new ItemStack(Items.CHARCOAL.getItem(), 1));
+		setInventorySlotContents(1, new ItemStack(Items.COAL.getItem(), 1));
+		setInventorySlotContents(2, new ItemStack(Items.IRON_INGOT.getItem(), 1));
+		setInventorySlotContents(3, new ItemStack(Items.GOLD_INGOT.getItem(), 1));
+		setInventorySlotContents(4, new ItemStack(Items.DIAMOND.getItem(), 1));
+		setInventorySlotContents(5, new ItemStack(Items.EMERALD.getItem(), 1));
+		
+		this.chestContents.set(numPlayerUsing, new ItemStack(Items.NETHERRACK.getItem(), 1));
 	}
 	
 	public VaultChestTileEntity() {
@@ -91,15 +98,6 @@ public class VaultChestTileEntity extends LockableLootTileEntity {
 		if(!this.checkLootAndRead(nbt)) {
 			ItemStackHelper.loadAllItems(nbt, this.chestContents);
 		}
-	}
-	
-	@SuppressWarnings("unused")
-	private void playsound (SoundEvent sound) {
-		// TODO Auto-generated method stub
-		double dx = (double) this.pos.getX() + 0.5d;
-		double dy = (double) this.pos.getY() + 0.5d;
-		double dz = (double) this.pos.getZ() + 0.5d;
-		this.world.playSound((PlayerEntity) null, dx, dy, dz, sound, SoundCategory.BLOCKS, 0.5f, this.world.rand.nextFloat() * 0.1f + 0.9f);
 	}
 	
 	@Override

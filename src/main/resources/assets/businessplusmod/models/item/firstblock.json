@@ -1,0 +1,6 @@
+{
+  "parent": "businessplusmod:block/firstblock",
+  "textures": {
+		"0": "businessplusmod:blocks/firstblock"
+	}
+}

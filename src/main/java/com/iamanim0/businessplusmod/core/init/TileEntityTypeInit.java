@@ -1,6 +1,7 @@
 package com.iamanim0.businessplusmod.core.init;
 
 import com.iamanim0.businessplusmod.BusinessPlusMod;
+import com.iamanim0.businessplusmod.common.tiles.FirstBlockTile;
 import com.iamanim0.businessplusmod.common.tiles.VaultChestTileEntity;
 
 import net.minecraft.tileentity.TileEntityType;
@@ -14,4 +15,8 @@ public class TileEntityTypeInit {
 	
 	public static final RegistryObject<TileEntityType<VaultChestTileEntity>> VAULT_CHEST = TILE_ENTITY_TYPES.register("vault_chest", 
 			() -> TileEntityType.Builder.create(VaultChestTileEntity::new, BlockInit.VAULT_CHEST.get()).build(null));
+	
+	public static final RegistryObject<TileEntityType<FirstBlockTile>> FIRSTBLOCK = TILE_ENTITY_TYPES.register("firstblock", 
+			() -> TileEntityType.Builder.create(FirstBlockTile::new, BlockInit.FIRSTBLOCK.get()).build(null));
+		
 }
