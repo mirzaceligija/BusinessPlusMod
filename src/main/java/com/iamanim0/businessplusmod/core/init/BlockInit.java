@@ -1,6 +1,7 @@
 package com.iamanim0.businessplusmod.core.init;
 
 import com.iamanim0.businessplusmod.BusinessPlusMod;
+import com.iamanim0.businessplusmod.common.blocks.AtmBlock;
 import com.iamanim0.businessplusmod.common.blocks.FirstBlock;
 import com.iamanim0.businessplusmod.common.blocks.VaultChestBlock;
 
@@ -39,4 +40,9 @@ public class BlockInit {
 	                .sound(SoundType.METAL)
 	                .hardnessAndResistance(2.0f)
 	                .setLightLevel(state -> state.get(BlockStateProperties.POWERED) ? 14 : 0)));
+	
+	public static final RegistryObject<Block> ATM_BLOCK  = BLOCKS.register("atm", 
+			() -> new AtmBlock(AbstractBlock.Properties.create(Material.IRON)
+	                .sound(SoundType.METAL)
+	                .hardnessAndResistance(2.0f)));
 }

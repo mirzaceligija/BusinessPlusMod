@@ -6,6 +6,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,10 +22,15 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.iamanim0.businessplusmod.common.capability.CapabilityHandler;
+import com.iamanim0.businessplusmod.common.capability.capability.CreditCardInfo;
+import com.iamanim0.businessplusmod.common.capability.capability.ICreditCardInfo;
+import com.iamanim0.businessplusmod.common.capability.storage.CreditCardStorage;
 import com.iamanim0.businessplusmod.core.init.BlockInit;
 import com.iamanim0.businessplusmod.core.init.ContainerTypeInit;
 import com.iamanim0.businessplusmod.core.init.ItemInit;
 import com.iamanim0.businessplusmod.core.init.TileEntityTypeInit;
+import com.iamanim0.businessplusmod.network.packet.ModPacketHandler;
 
 import java.util.stream.Collectors;
 
@@ -48,6 +54,8 @@ public class BusinessPlusMod
     	TileEntityTypeInit.TILE_ENTITY_TYPES.register(bus);
     	ContainerTypeInit.CONTAINER_TYPES.register(bus);
     	
+    	MinecraftForge.EVENT_BUS.register(new CapabilityHandler());
+    	
 
     	// Register the setup method for mod loading
         //FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
@@ -67,6 +75,9 @@ public class BusinessPlusMod
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+        
+        CapabilityManager.INSTANCE.register(ICreditCardInfo.class, new CreditCardStorage(), CreditCardInfo::new);
+        ModPacketHandler.registerMessages();
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
@@ -120,6 +131,7 @@ public class BusinessPlusMod
 		@Override
 		public void fill(NonNullList<ItemStack> items) {
 			// TODO Auto-generated method stub
+			/*
 			items.add(ItemInit.WALLET_ITEM.get().getDefaultInstance());
 			items.add(ItemInit.COIN1_ITEM.get().getDefaultInstance());
 			items.add(ItemInit.COIN5_ITEM.get().getDefaultInstance());
@@ -140,6 +152,30 @@ public class BusinessPlusMod
 			items.add(ItemInit.VAULT_CHEST_BLOCK.get().getDefaultInstance());
 			items.add(ItemInit.MONEY_PILE_BLOCK.get().getDefaultInstance());
 			items.add(ItemInit.FIRST_BLOCK.get().getDefaultInstance());
+			*/
+			
+			//CUSTOM MOD
+			items.add(ItemInit.ATM.get().getDefaultInstance());
+			items.add(ItemInit.CREDIT_CARD_ITEM.get().getDefaultInstance());
+			items.add(ItemInit.CENT_1.get().getDefaultInstance());
+			items.add(ItemInit.CENT_2.get().getDefaultInstance());
+			items.add(ItemInit.CENT_5.get().getDefaultInstance());
+			items.add(ItemInit.CENT_10.get().getDefaultInstance());
+			items.add(ItemInit.CENT_20.get().getDefaultInstance());
+			items.add(ItemInit.CENT_50.get().getDefaultInstance());
+			items.add(ItemInit.EURO_1.get().getDefaultInstance());
+			items.add(ItemInit.EURO_1.get().getDefaultInstance());
+			items.add(ItemInit.EURO_2.get().getDefaultInstance());
+			items.add(ItemInit.EURO_5.get().getDefaultInstance());
+			items.add(ItemInit.EURO_10.get().getDefaultInstance());
+			items.add(ItemInit.EURO_20.get().getDefaultInstance());
+			items.add(ItemInit.EURO_50.get().getDefaultInstance());
+			items.add(ItemInit.EURO_100.get().getDefaultInstance());
+			//items.add(ItemInit.EURO_200.get().getDefaultInstance());
+			items.add(ItemInit.EURO_500.get().getDefaultInstance());
+			items.add(ItemInit.EURO_10000.get().getDefaultInstance());
+			items.add(ItemInit.EURO_50000.get().getDefaultInstance());
+			items.add(ItemInit.EURO_1000000.get().getDefaultInstance());
 			//super.fill(items);
 		}
     }

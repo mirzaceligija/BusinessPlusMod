@@ -32,7 +32,7 @@ public class FirstBlockScreen extends ContainerScreen<FirstBlockContainer> {
     @SuppressWarnings("resource")
 	@Override
     protected void drawGuiContainerForegroundLayer(MatrixStack matrixStack, int mouseX, int mouseY) {
-        drawString(matrixStack, Minecraft.getInstance().fontRenderer, "Money: " + container.getEnergy(), 6, 6, 0xffffff);
+        drawString(matrixStack, Minecraft.getInstance().fontRenderer, "Money: " + (double) container.getEnergy(), 6, 6, 0xffffff);
     }
 
     @SuppressWarnings("deprecation")

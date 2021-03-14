@@ -39,110 +39,89 @@ public class WalletItem extends Item {
 		// TODO Auto-generated constructor stub
 	}
 	
-	/**
-	   * When the player right clicks while holding the bag, open the inventory screen
-	   * @param world
-	   * @param player
-	   * @param hand
-	   * @return the new itemstack
-	   */
-		@Nonnull
-		@Override
-		public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, @Nonnull Hand hand) {
-	    ItemStack stack = player.getHeldItem(hand);
-	    if (!world.isRemote) {  // server only!
-				INamedContainerProvider containerProviderFlowerBag = new WalletContainerProvider(this, stack);
-				final int NUMBER_OF_FLOWER_SLOTS = 18;
-				NetworkHooks.openGui((ServerPlayerEntity) player,
-	                           containerProviderFlowerBag,
-	                           (packetBuffer)->{packetBuffer.writeInt(NUMBER_OF_FLOWER_SLOTS);});
-	      // We use the packetBuffer to send the bag size; not necessary since it's always 16, but just for illustration purposes
-			}
-			return ActionResult.resultSuccess(stack);
+	//When the player right clicks while holding the bag, open the inventory screen
+	@Nonnull
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, @Nonnull Hand hand) {
+    ItemStack stack = player.getHeldItem(hand);
+    if (!world.isRemote) {  // server only!
+			INamedContainerProvider containerProviderWallet = new WalletContainerProvider(this, stack);
+			final int NUMBER_OF_MONEY_SLOTS = 18;
+			NetworkHooks.openGui((ServerPlayerEntity) player,
+							containerProviderWallet,
+                           (packetBuffer)->{packetBuffer.writeInt(NUMBER_OF_MONEY_SLOTS);});
 		}
+		return ActionResult.resultSuccess(stack);
+	}
 		
 
-	  /**
-	   *  If we use the item on a block with an ITEM_HANDLER_CAPABILITY, automatically transfer the entire contents of the flower bag
-	   *     into that block
-	   *  onItemUseFirst is a forge extension that is called before the block is activated
-	   *  If you use onItemUse, this will never get called for a container because the container will capture the click first
-	   * @param ctx
-	   * @return
-	   */
-		@Nonnull
-		@Override
-		public ActionResultType onItemUseFirst(ItemStack stack, ItemUseContext ctx) {
-		  World world = ctx.getWorld();
-	    if (world.isRemote()) return ActionResultType.PASS;
+   // If we use the item on a block with an ITEM_HANDLER_CAPABILITY, automatically transfer the entire contents of the flower bag into that block
+   // onItemUseFirst is a forge extension that is called before the block is activated
+	@Nonnull
+	@Override
+	public ActionResultType onItemUseFirst(ItemStack stack, ItemUseContext ctx) {
+	
+		World world = ctx.getWorld();
+		if (world.isRemote()) return ActionResultType.PASS;
 
 	    BlockPos pos = ctx.getPos();
-			Direction side = ctx.getFace();
-			ItemStack itemStack = ctx.getItem();
-			if (!(itemStack.getItem() instanceof WalletItem)) throw new AssertionError("Unexpected WalletItem type");
-			WalletItem itemFlowerBag = (WalletItem)itemStack.getItem();
+	    Direction side = ctx.getFace();
+	    ItemStack itemStack = ctx.getItem();
+	    if (!(itemStack.getItem() instanceof WalletItem)) throw new AssertionError("Unexpected WalletItem type");
+	    WalletItem walletItem = (WalletItem)itemStack.getItem();
+	    TileEntity tileEntity = world.getTileEntity(pos);
 
-			TileEntity tileEntity = world.getTileEntity(pos);
-
-			if (tileEntity == null) return ActionResultType.PASS;
+	    if (tileEntity == null) return ActionResultType.PASS;
 	    if (world.isRemote()) return ActionResultType.SUCCESS; // always succeed on client side
 
-	    // check if this object has an inventory- either Forge capability, or vanilla IInventory
+	    // Check if this object has an inventory - either Forge capability, or vanilla IInventory
 	    IItemHandler tileInventory;
 	    LazyOptional<IItemHandler> capability = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side);
 	    if (capability.isPresent()) {
-	      tileInventory = capability.orElseThrow(AssertionError::new);
+	    	tileInventory = capability.orElseThrow(AssertionError::new);
 	    } else if (tileEntity instanceof IInventory) {
-	      tileInventory = new InvWrapper((IInventory)tileEntity);
+	    	tileInventory = new InvWrapper((IInventory)tileEntity);
 	    } else {
-	      return ActionResultType.FAIL;
+	    	return ActionResultType.FAIL;
 	    }
 
-	    // go through each flower ItemStack in our flower bag and try to insert as many as possible into the tile's inventory.
+	    // Go through each currency ItemStack in our wallet and try to insert as many as possible into the tile's inventory.
 	    @SuppressWarnings("static-access")
-		ItemStackHandlerWallet itemStackHandlerFlowerBag =  itemFlowerBag.getItemStackHandlerFlowerBag(itemStack);
-	    for (int i = 0; i < itemStackHandlerFlowerBag.getSlots(); i++) {
-	      ItemStack flower = itemStackHandlerFlowerBag.getStackInSlot(i);
-	      ItemStack flowersWhichDidNotFit = ItemHandlerHelper.insertItemStacked(tileInventory, flower, false);
-	      itemStackHandlerFlowerBag.setStackInSlot(i, flowersWhichDidNotFit);
+	    ItemStackHandlerWallet itemStackHandlerWallet =  walletItem.getItemStackHandlerWallet(itemStack);
+	    for (int i = 0; i < itemStackHandlerWallet.getSlots(); i++) {
+	    	ItemStack currency = itemStackHandlerWallet.getStackInSlot(i);
+	    	ItemStack currencyWhichDidNotFit = ItemHandlerHelper.insertItemStacked(tileInventory, currency, false);
+	    	itemStackHandlerWallet.setStackInSlot(i, currencyWhichDidNotFit);
 	    }
-	    tileEntity.markDirty();           // make sure that the tileEntity knows we have changed its contents
-
-	    // we need to mark the flowerbag ItemStack as dirty so that the server will send it to the player.
-	    // This normally happens in ServerPlayerEntity.tick(), which calls this.openContainer.detectAndSendChanges();
-	    // Unfortunately, this code only detects changes to item type, number, or nbt.  It doesn't check the capability instance.
-	    // We could copy the detectAndSendChanges code out and call it manually, but it's easier to mark the itemstack as
-	    //  dirty by modifying its nbt...
-	    //  Of course, if your ItemStack's capability doesn't affect the rendering of the ItemStack, i.e. the Capability is not needed
-	    //  on the client at all, then you don't need to bother to mark it dirty.
+	    tileEntity.markDirty();  // Make sure that the tileEntity knows we have changed its contents
 
 	    CompoundNBT nbt = itemStack.getOrCreateTag();
 	    int dirtyCounter = nbt.getInt("dirtyCounter");
 	    nbt.putInt("dirtyCounter", dirtyCounter + 1);
 	    itemStack.setTag(nbt);
-
+	
 	    return ActionResultType.SUCCESS;
-		}
+	}
 
 
-	   // ------  Code used to generate a suitable Container for the contents of the FlowerBag
+    // ------  Code used to generate a suitable Container for the contents of the FlowerBag
 
-	  /**
-	   * Uses an inner class as an INamedContainerProvider.  This does two things:
-	   *   1) Provides a name used when displaying the container, and
-	   *   2) Creates an instance of container on the server which is linked to the ItemFlowerBag
-	   * You could use SimpleNamedContainerProvider with a lambda instead, but I find this method easier to understand
-	   * I've used a static inner class instead of a non-static inner class for the same reason
-	   */
-	  private static class WalletContainerProvider implements INamedContainerProvider {
-	    public WalletContainerProvider(WalletItem itemFlowerBag, ItemStack itemStackFlowerBag) {
-	      this.itemStackFlowerBag = itemStackFlowerBag;
-	      this.itemFlowerBag = itemFlowerBag;
+	/*
+	 * Uses an inner class as an INamedContainerProvider.  This does two things:
+	 *   1) Provides a name used when displaying the container, and
+	 *   2) Creates an instance of container on the server which is linked to the ItemFlowerBag
+	 * You could use SimpleNamedContainerProvider with a lambda instead, but I find this method easier to understand
+	 * I've used a static inner class instead of a non-static inner class for the same reason
+	 */
+	private static class WalletContainerProvider implements INamedContainerProvider {
+	    public WalletContainerProvider(WalletItem itemWallet, ItemStack itemStackWallet) {
+	      this.itemStackWallet = itemStackWallet;
+	      this.itemWallet = itemWallet;
 	    }
 
 	    @Override
 	    public ITextComponent getDisplayName() {
-	      return itemStackFlowerBag.getDisplayName();
+	      return itemStackWallet.getDisplayName();
 	    }
 
 	    /*
@@ -150,65 +129,42 @@ public class WalletItem extends Item {
 	    */
 	    @Override
 	    public WalletContainer createMenu(int windowID, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-	      @SuppressWarnings("static-access")
-		WalletContainer newContainerServerSide =
-	    		  WalletContainer.createContainerServerSide(windowID, playerInventory,
-	                      itemFlowerBag.getItemStackHandlerFlowerBag(itemStackFlowerBag),
-	                      itemStackFlowerBag);
-	      return newContainerServerSide;
+	    @SuppressWarnings("static-access")
+			WalletContainer newContainerServerSide = WalletContainer.createContainerServerSide(windowID, playerInventory,
+		    				  itemWallet.getItemStackHandlerWallet(itemStackWallet), itemStackWallet);
+		      return newContainerServerSide;
 	    }
 
-	    private WalletItem itemFlowerBag;
-	    private ItemStack itemStackFlowerBag;
-	  }
+	    private WalletItem itemWallet;
+	    private ItemStack itemStackWallet;
+	}
 
-	  // ---------------- Code related to Capabilities
-	  //
-
-	  // The CapabilityProvider returned from this method is used to specify which capabilities the ItemFlowerBag possesses
-	  @Nonnull
-	  @Override
-	  public ICapabilityProvider initCapabilities(ItemStack stack, CompoundNBT oldCapNbt) {
-	    return new CapabilityProviderWallet();
-	  }
-
-	  /**
-	   * Retrieves the ItemStackHandlerFlowerBag for this itemStack (retrieved from the Capability)
-	   * @param itemStack
-	   * @return
-	   */
-	  private static ItemStackHandlerWallet getItemStackHandlerFlowerBag(ItemStack itemStack) {
-	    IItemHandler flowerBag = itemStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null);
-	    if (flowerBag == null || !(flowerBag instanceof ItemStackHandlerWallet)) {
-	      LOGGER.error("ItemFlowerBag did not have the expected ITEM_HANDLER_CAPABILITY");
-	      return new ItemStackHandlerWallet(1);
+	// ---------------- Code related to Capabilities //
+	
+	@Nonnull
+	@Override
+	public ICapabilityProvider initCapabilities(ItemStack stack, CompoundNBT oldCapNbt) {
+		return new CapabilityProviderWallet();
+	}
+	
+	private static ItemStackHandlerWallet getItemStackHandlerWallet(ItemStack itemStack) {
+		IItemHandler wallet = itemStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null);
+	    if (wallet == null || !(wallet instanceof ItemStackHandlerWallet)) {
+	    	LOGGER.error("ItemFlowerBag did not have the expected ITEM_HANDLER_CAPABILITY");
+	    	return new ItemStackHandlerWallet(1);
 	    }
-	    return (ItemStackHandlerWallet)flowerBag;
-	  }
+	    return (ItemStackHandlerWallet)wallet;
+	}
+	
+	private final String BASE_NBT_TAG = "base";
+	private final String CAPABILITY_NBT_TAG = "cap";
+	
 
-	  private final String BASE_NBT_TAG = "base";
-	  private final String CAPABILITY_NBT_TAG = "cap";
-
-	  /**
-	   * Ensure that our capability is sent to the client when transmitted over the network.
-	   * Not needed if you don't need the capability information on the client
-	   *
-	   * Note that this will sometimes be applied multiple times, the following MUST
-	   * be supported:
-	   *   Item item = stack.getItem();
-	   *   NBTTagCompound nbtShare1 = item.getShareTag(stack);
-	   *   stack.readShareTag(nbtShare1);
-	   *   NBTTagCompound nbtShare2 = item.getShareTag(stack);
-	   *   assert nbtShare1.equals(nbtShare2);
-	   *
-	   * @param stack The stack to send the NBT tag for
-	   * @return The NBT tag
-	   */
-	  @Nullable
-	  @Override
-	  public CompoundNBT getShareTag(ItemStack stack) {
-	    CompoundNBT baseTag = stack.getTag();
-	    ItemStackHandlerWallet itemStackHandlerFlowerBag = getItemStackHandlerFlowerBag(stack);
+	@Nullable
+	@Override
+	public CompoundNBT getShareTag(ItemStack stack) {
+		CompoundNBT baseTag = stack.getTag();
+	    ItemStackHandlerWallet itemStackHandlerFlowerBag = getItemStackHandlerWallet(stack);
 	    CompoundNBT capabilityTag = itemStackHandlerFlowerBag.serializeNBT();
 	    CompoundNBT combinedTag = new CompoundNBT();
 	    if (baseTag != null) {
@@ -218,41 +174,41 @@ public class WalletItem extends Item {
 	      combinedTag.put(CAPABILITY_NBT_TAG, capabilityTag);
 	    }
 	    return combinedTag;
-	  }
-
-	  /** Retrieve our capability information from the transmitted NBT information
-	   *
-	   * @param stack The stack that received NBT
-	   * @param nbt   Received NBT, can be null
-	   */
-	  @Override
-	  public void readShareTag(ItemStack stack, @Nullable CompoundNBT nbt) {
-	    if (nbt == null) {
+	}
+	
+	/** Retrieve our capability information from the transmitted NBT information
+	 *
+	 * @param stack The stack that received NBT
+	 * @param nbt   Received NBT, can be null
+	 */
+	@Override
+	public void readShareTag(ItemStack stack, @Nullable CompoundNBT nbt) {
+		if (nbt == null) {
 	      stack.setTag(null);
 	      return;
 	    }
 	    CompoundNBT baseTag = nbt.getCompound(BASE_NBT_TAG);              // empty if not found
 	    CompoundNBT capabilityTag = nbt.getCompound(CAPABILITY_NBT_TAG); // empty if not found
 	    stack.setTag(baseTag);
-	    ItemStackHandlerWallet itemStackHandlerFlowerBag = getItemStackHandlerFlowerBag(stack);
+	    ItemStackHandlerWallet itemStackHandlerFlowerBag = getItemStackHandlerWallet(stack);
 	    itemStackHandlerFlowerBag.deserializeNBT(capabilityTag);
-	  }
-
-	  // ------------ code used for changing the appearance of the bag based on the number of flowers in it
-
-	  /**
-	   * gets the fullness property override, used in mbe32_flower_bag_registry_name.json to select which model should
-	   *   be rendered
-	   * @param itemStack
-	   * @param world
-	   * @param livingEntity
-	   * @return 0.0 (empty) -> 1.0 (full) based on the number of slots in the bag which are in use
-	   */
-	  public static float getFullnessPropertyOverride(ItemStack itemStack, @Nullable World world, @Nullable LivingEntity livingEntity) {
-		  ItemStackHandlerWallet flowerBag = getItemStackHandlerFlowerBag(itemStack);
-	    float fractionEmpty = flowerBag.getNumberOfEmptySlots() / (float)flowerBag.getSlots();
+	}
+	
+	// ------------ Code used for changing the appearance of the bag based on the number of flowers in it
+	
+	/**
+	 * gets the fullness property override, used in mbe32_flower_bag_registry_name.json to select which model should
+	 *   be rendered
+	 * @param itemStack
+	 * @param world
+	 * @param livingEntity
+	 * @return 0.0 (empty) -> 1.0 (full) based on the number of slots in the bag which are in use
+	 */
+	public static float getFullnessPropertyOverride(ItemStack itemStack, @Nullable World world, @Nullable LivingEntity livingEntity) {
+		ItemStackHandlerWallet wallet = getItemStackHandlerWallet(itemStack);
+	    float fractionEmpty = wallet.getNumberOfEmptySlots() / (float)wallet.getSlots();
 	    return 1.0F - fractionEmpty;
-	  }
-
-	  private static final Logger LOGGER = LogManager.getLogger();
+	}
+	
+	private static final Logger LOGGER = LogManager.getLogger();
 }

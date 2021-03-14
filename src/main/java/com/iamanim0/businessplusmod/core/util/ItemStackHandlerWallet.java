@@ -26,6 +26,7 @@ public class ItemStackHandlerWallet extends ItemStackHandler {
 	    throw new IllegalArgumentException("Invalid number of flower slots: " + numberOfSlots);
 	  }
 	  
+	  //this.setStackInSlot(0, new ItemStack(ItemInit.COIN10_ITEM.get()));
 	  //setStackInSlot(0, new ItemStack(ItemInit.COIN10_ITEM.get()));
 	}
 	  
@@ -37,6 +38,7 @@ public class ItemStackHandlerWallet extends ItemStackHandler {
 	  if (stack.isEmpty()) return false;
 	  Item item = stack.getItem();
 	  if (item.isIn(ItemTags.getCollection().get(CURRENCY_TAG))) return true;
+	  
 	  return false;
 	}
 	  
@@ -54,6 +56,7 @@ public class ItemStackHandlerWallet extends ItemStackHandler {
 	  }
 	  return emptySlotCount;
 	}
+
 	  
 	/** returns true if the contents have changed since the last call.
 	* Resets to false after each call.
@@ -74,4 +77,5 @@ public class ItemStackHandlerWallet extends ItemStackHandler {
 	protected void onContentsChanged(int slot) {
 	  isDirty = true;
 	}
+
 }

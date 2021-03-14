@@ -18,15 +18,8 @@ public class Config {
     public static ForgeConfigSpec.IntValue FIRSTBLOCK_TICKS;
 
     public static ForgeConfigSpec.DoubleValue ROTATION_SPEED;
-
     
-    //custom
-    public static ForgeConfigSpec.IntValue FIRSTBLOCK_GENERATE_D5;
-    public static ForgeConfigSpec.IntValue FIRSTBLOCK_GENERATE_D10;
-    public static ForgeConfigSpec.IntValue FIRSTBLOCK_GENERATE_D20;
-    public static ForgeConfigSpec.IntValue FIRSTBLOCK_GENERATE_D50;
-    public static ForgeConfigSpec.IntValue FIRSTBLOCK_GENERATE_D100;
-    public static ForgeConfigSpec.IntValue FIRSTBLOCK_GENERATE_D500;
+    public static ForgeConfigSpec.DoubleValue FIRSTBLOCK_SEND2;
 
     static {
 
@@ -59,6 +52,9 @@ public class Config {
                 .defineInRange("send", 1, 0, Integer.MAX_VALUE);
         FIRSTBLOCK_TICKS = SERVER_BUILDER.comment("Ticks per one dollar")
                 .defineInRange("ticks", 1, 0, Integer.MAX_VALUE);
+        
+        FIRSTBLOCK_SEND2 = SERVER_BUILDER.comment("Power generation to send per tick")
+                .defineInRange("send", 0.1, 0, Double.MAX_VALUE);
 
         SERVER_BUILDER.pop();
     }

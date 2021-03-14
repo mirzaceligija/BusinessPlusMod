@@ -4,13 +4,10 @@ import com.iamanim0.businessplusmod.BusinessPlusMod;
 import com.iamanim0.businessplusmod.common.tiles.FirstBlockTile;
 import com.iamanim0.businessplusmod.core.init.BlockInit;
 import com.iamanim0.businessplusmod.core.init.ContainerTypeInit;
-import com.iamanim0.businessplusmod.core.init.ItemInit;
 import com.iamanim0.businessplusmod.core.util.CustomEnergyStorage;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.ClickType;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
@@ -26,7 +23,6 @@ import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
@@ -49,7 +45,6 @@ public class FirstBlockContainer  extends Container {
                 addSlot(new SlotItemHandler(h, 0, 145, 50));
             });
         }
-        
         //layoutMainInventorySlots(8, 17);
         layoutPlayerInventorySlots(8, 173);
         trackPower();

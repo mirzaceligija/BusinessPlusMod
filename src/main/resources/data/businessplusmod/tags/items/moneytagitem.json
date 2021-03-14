@@ -1,0 +1,22 @@
+{
+  "replace":false,
+  "values": [
+      "businessplusmod:cent1",
+      "businessplusmod:cent2",
+      "businessplusmod:cent5",
+      "businessplusmod:cent10",
+      "businessplusmod:cent20",
+      "businessplusmod:cent50",
+      "businessplusmod:euro1",
+      "businessplusmod:euro2",
+      "businessplusmod:euro5",
+      "businessplusmod:euro10",
+      "businessplusmod:euro20",
+      "businessplusmod:euro50",
+      "businessplusmod:euro100",
+      "businessplusmod:euro500",
+      "businessplusmod:euro10000",
+      "businessplusmod:euro50000",
+      "businessplusmod:euro1000000"
+  ]
+}

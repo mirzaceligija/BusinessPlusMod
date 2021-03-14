@@ -5,32 +5,52 @@ import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.energy.EnergyStorage;
 
 public class CustomEnergyStorage extends EnergyStorage implements INBTSerializable<CompoundNBT> {
+	
+	public double energy2;
 
     public CustomEnergyStorage(int capacity, int maxTransfer) {
         super(capacity, maxTransfer);
+        
+        this.energy2 = this.energy;
     }
 
     protected void onEnergyChanged() {
 
     }
 
-    public void setEnergy(int energy) {
-        this.energy = energy;
+    public double getEnergy2() {
+		return energy2;
+	}
+  
+
+    public void setEnergy(double energy) {
+        this.energy = (int) energy;
+        this.energy2 = energy;
         onEnergyChanged();
     }
 
-    public void addEnergy(int energy) {
+    public void addEnergy(double energy) {
         this.energy += energy;
         if (this.energy > getMaxEnergyStored()) {
             this.energy = getEnergyStored();
         }
+        
+        this.energy2 += energy;
+        if (this.energy2 > getMaxEnergyStored()) {
+            this.energy2 = getEnergyStored();
+        }
         onEnergyChanged();
     }
 
-    public void consumeEnergy(int energy) {
+    public void consumeEnergy(double energy) {
         this.energy -= energy;
         if (this.energy < 0) {
             this.energy = 0;
+        }
+        
+        this.energy2 -= energy;
+        if (this.energy2 < 0) {
+            this.energy2 = 0.00;
         }
         onEnergyChanged();
     }

@@ -1,5 +1,7 @@
 package com.iamanim0.businessplusmod.common.containers;
 
+import com.iamanim0.businessplusmod.BusinessPlusMod;
+import com.iamanim0.businessplusmod.common.items.CurrencyItem;
 import com.iamanim0.businessplusmod.core.init.ContainerTypeInit;
 import com.iamanim0.businessplusmod.core.util.ItemStackHandlerWallet;
 
@@ -10,6 +12,8 @@ import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 
 import net.minecraftforge.items.SlotItemHandler;
@@ -20,12 +24,13 @@ import javax.annotation.Nonnull;
 
 public class WalletContainer extends Container {
 	
+	private static final ResourceLocation CURRENCY_TAG = new ResourceLocation(BusinessPlusMod.MOD_ID, "currencytagitem");
+	
 	private static final Logger LOGGER = LogManager.getLogger();
 	private static final ItemStackHandlerWallet itemStackHandlerFlowerBag2 = new ItemStackHandlerWallet(18);
 	
 	private final ItemStackHandlerWallet itemStackHandlerFlowerBag;
-	private final ItemStack itemStackBeingHeld;
-	
+	private final ItemStack itemStackBeingHeld;		
 
 	// must assign a slot number to each of the slots used by the GUI.
 	// For this container, we can see both the tile inventory's slots as well as the player inventory slots and the hotbar.
@@ -77,6 +82,8 @@ public class WalletContainer extends Container {
 		super(ContainerTypeInit.WALLET.get(), windowId);
 		this.itemStackHandlerFlowerBag = itemStackHandlerFlowerBag;
 		this.itemStackBeingHeld = itemStackBeingHeld;
+		
+		countMoney();
 
 		final int SLOT_X_SPACING = 18;
 	    final int SLOT_Y_SPACING = 18;
@@ -141,7 +148,8 @@ public class WalletContainer extends Container {
 	    Slot sourceSlot = inventorySlots.get(sourceSlotIndex);
 	    if (sourceSlot == null || !sourceSlot.getHasStack()) return ItemStack.EMPTY;  //EMPTY_ITEM
 	    ItemStack sourceStack = sourceSlot.getStack();
-	    ItemStack copyOfSourceStack = sourceStack.copy();
+	    @SuppressWarnings("unused")
+		ItemStack copyOfSourceStack = sourceStack.copy();
 	    final int BAG_SLOT_COUNT = itemStackHandlerFlowerBag.getSlots();
 
 	    // Check if the slot clicked is one of the vanilla container slots
@@ -152,7 +160,7 @@ public class WalletContainer extends Container {
 	      }
 	    } else if (sourceSlotIndex >= WALLET_INVENTORY_FIRST_SLOT_INDEX && sourceSlotIndex < WALLET_INVENTORY_FIRST_SLOT_INDEX + BAG_SLOT_COUNT) {
 	      // This is a bag slot so merge the stack into the players inventory
-	      if (!mergeItemStack(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
+	      if (!mergeItemStack(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {	
 	        return ItemStack.EMPTY;
 	      }
 	    } else {
@@ -162,13 +170,12 @@ public class WalletContainer extends Container {
 
 	    // If stack size == 0 (the entire stack was moved) set slot contents to null
 	    if (sourceStack.getCount() == 0) {
-	      sourceSlot.putStack(ItemStack.EMPTY);
+	    	sourceSlot.putStack(ItemStack.EMPTY);
 	    } else {
-	      sourceSlot.onSlotChanged();
+	    	sourceSlot.onSlotChanged();
 	    }
-
 	    sourceSlot.onTake(player, sourceStack);
-	    return copyOfSourceStack;
+	    return sourceStack;
 	}
 
 	/**
@@ -190,7 +197,27 @@ public class WalletContainer extends Container {
 	      int dirtyCounter = nbt.getInt("dirtyCounter");
 	      nbt.putInt("dirtyCounter", dirtyCounter + 1);
 	      itemStackBeingHeld.setTag(nbt);
-	    }
+	    }	  
 	    super.detectAndSendChanges();
 	}
+	
+	public double getMoneyIn(){
+		countMoney();
+		return this.MoneyCount;
+	}
+	
+	public void countMoney() {
+		final int NUMBER_OF_SLOTS = this.itemStackHandlerFlowerBag.getSlots();
+		double temp = 0.00;
+		this.MoneyCount = 0.00;
+		for (int i = 0; i < NUMBER_OF_SLOTS; ++i) {
+        	if (this.itemStackHandlerFlowerBag.getStackInSlot(i).getItem().isIn(ItemTags.getCollection().get(CURRENCY_TAG))) {
+        		CurrencyItem cItem = (CurrencyItem) this.itemStackHandlerFlowerBag.getStackInSlot(i).getItem();
+        		temp = cItem.getCurrencyValue() * this.itemStackHandlerFlowerBag.getStackInSlot(i).getCount();
+        		this.MoneyCount = this.MoneyCount + temp;
+        	}
+		  }
+	}
+	
+	public double MoneyCount;
 }
