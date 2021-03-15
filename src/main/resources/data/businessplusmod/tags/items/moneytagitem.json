@@ -7,16 +7,16 @@
       "businessplusmod:cent10",
       "businessplusmod:cent20",
       "businessplusmod:cent50",
-      "businessplusmod:euro1",
-      "businessplusmod:euro2",
-      "businessplusmod:euro5",
-      "businessplusmod:euro10",
-      "businessplusmod:euro20",
-      "businessplusmod:euro50",
-      "businessplusmod:euro100",
-      "businessplusmod:euro500",
-      "businessplusmod:euro10000",
-      "businessplusmod:euro50000",
-      "businessplusmod:euro1000000"
+      "businessplusmod:dollar1",
+      "businessplusmod:dollar2",
+      "businessplusmod:dollar5",
+      "businessplusmod:dollar10",
+      "businessplusmod:dollar20",
+      "businessplusmod:dollar50",
+      "businessplusmod:dollar100",
+      "businessplusmod:dollar500",
+      "businessplusmod:dollar10000",
+      "businessplusmod:dollar50000",
+      "businessplusmod:dollar1000000"
   ]
 }

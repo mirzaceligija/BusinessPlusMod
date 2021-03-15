@@ -1,10 +1,10 @@
 package com.iamanim0.businessplusmod.common.containers;
 
 import com.iamanim0.businessplusmod.BusinessPlusMod;
+import com.iamanim0.businessplusmod.common.capability.storage.CustomEnergyStorage;
 import com.iamanim0.businessplusmod.common.tiles.FirstBlockTile;
 import com.iamanim0.businessplusmod.core.init.BlockInit;
 import com.iamanim0.businessplusmod.core.init.ContainerTypeInit;
-import com.iamanim0.businessplusmod.core.util.CustomEnergyStorage;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -28,7 +28,7 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 
 public class FirstBlockContainer  extends Container {
 	
-	private static final ResourceLocation CURRENCY_TAG = new ResourceLocation(BusinessPlusMod.MOD_ID, "currencytagitem");
+	private static final ResourceLocation MONEY_TAG = new ResourceLocation(BusinessPlusMod.MOD_ID, "moneytagitem");
 
 	private TileEntity tileEntity;
     private PlayerEntity playerEntity;
@@ -124,7 +124,7 @@ public class FirstBlockContainer  extends Container {
                 }
                 slot.onSlotChange(stack, itemstack);
             } else {
-                if (stack.getItem().isIn(ItemTags.getCollection().get(CURRENCY_TAG))) {
+                if (stack.getItem().isIn(ItemTags.getCollection().get(MONEY_TAG))) {
                     if (!this.mergeItemStack(stack, 0, 1, false)) {
                         return ItemStack.EMPTY;
                     }

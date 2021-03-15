@@ -1,7 +1,7 @@
 package com.iamanim0.businessplusmod.common.containers;
 
 import com.iamanim0.businessplusmod.BusinessPlusMod;
-import com.iamanim0.businessplusmod.common.items.CurrencyItem;
+import com.iamanim0.businessplusmod.common.items.MoneyItem;
 import com.iamanim0.businessplusmod.core.init.ContainerTypeInit;
 import com.iamanim0.businessplusmod.core.util.ItemStackHandlerWallet;
 
@@ -24,7 +24,7 @@ import javax.annotation.Nonnull;
 
 public class WalletContainer extends Container {
 	
-	private static final ResourceLocation CURRENCY_TAG = new ResourceLocation(BusinessPlusMod.MOD_ID, "currencytagitem");
+	private static final ResourceLocation MONEY_TAG = new ResourceLocation(BusinessPlusMod.MOD_ID, "moneytagitem");
 	
 	private static final Logger LOGGER = LogManager.getLogger();
 	private static final ItemStackHandlerWallet itemStackHandlerFlowerBag2 = new ItemStackHandlerWallet(18);
@@ -206,14 +206,15 @@ public class WalletContainer extends Container {
 		return this.MoneyCount;
 	}
 	
+	@SuppressWarnings("static-access")
 	public void countMoney() {
 		final int NUMBER_OF_SLOTS = this.itemStackHandlerFlowerBag.getSlots();
 		double temp = 0.00;
 		this.MoneyCount = 0.00;
 		for (int i = 0; i < NUMBER_OF_SLOTS; ++i) {
-        	if (this.itemStackHandlerFlowerBag.getStackInSlot(i).getItem().isIn(ItemTags.getCollection().get(CURRENCY_TAG))) {
-        		CurrencyItem cItem = (CurrencyItem) this.itemStackHandlerFlowerBag.getStackInSlot(i).getItem();
-        		temp = cItem.getCurrencyValue() * this.itemStackHandlerFlowerBag.getStackInSlot(i).getCount();
+        	if (this.itemStackHandlerFlowerBag.getStackInSlot(i).getItem().isIn(ItemTags.getCollection().get(MONEY_TAG))) {
+        		MoneyItem moneyItem = (MoneyItem) this.itemStackHandlerFlowerBag.getStackInSlot(i).getItem();
+        		temp = (moneyItem.getCoinValue(this.itemStackHandlerFlowerBag.getStackInSlot(i).getItem()) * this.itemStackHandlerFlowerBag.getStackInSlot(i).getCount())/100.00;
         		this.MoneyCount = this.MoneyCount + temp;
         	}
 		  }

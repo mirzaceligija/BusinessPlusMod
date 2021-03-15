@@ -125,57 +125,39 @@ public class BusinessPlusMod
 		
 		@Override
 		public ItemStack createIcon() {
-			return ItemInit.DOLLAR500_ITEM.get().getDefaultInstance();
+			return ItemInit.DOLLAR_500.get().getDefaultInstance();
 		}
 
 		@Override
 		public void fill(NonNullList<ItemStack> items) {
-			// TODO Auto-generated method stub
-			/*
-			items.add(ItemInit.WALLET_ITEM.get().getDefaultInstance());
-			items.add(ItemInit.COIN1_ITEM.get().getDefaultInstance());
-			items.add(ItemInit.COIN5_ITEM.get().getDefaultInstance());
-			items.add(ItemInit.COIN10_ITEM.get().getDefaultInstance());
-			items.add(ItemInit.COIN25_ITEM.get().getDefaultInstance());
-			items.add(ItemInit.COIN50_ITEM.get().getDefaultInstance());
-			items.add(ItemInit.DOLLAR1_ITEM.get().getDefaultInstance());
-			items.add(ItemInit.DOLLAR5_ITEM.get().getDefaultInstance());
-			items.add(ItemInit.DOLLAR10_ITEM.get().getDefaultInstance());
-			items.add(ItemInit.DOLLAR20_ITEM.get().getDefaultInstance());
-			items.add(ItemInit.DOLLAR50_ITEM.get().getDefaultInstance());
-			items.add(ItemInit.DOLLAR100_ITEM.get().getDefaultInstance());
-			items.add(ItemInit.DOLLAR500_ITEM.get().getDefaultInstance());
-			items.add(ItemInit.DOLLAR10000_ITEM.get().getDefaultInstance());
-			items.add(ItemInit.DOLLAR50000_ITEM.get().getDefaultInstance());
-			items.add(ItemInit.DOLLAR1000000_ITEM.get().getDefaultInstance());
-			items.add(ItemInit.LICENCE_ITEM.get().getDefaultInstance());
-			items.add(ItemInit.VAULT_CHEST_BLOCK.get().getDefaultInstance());
-			items.add(ItemInit.MONEY_PILE_BLOCK.get().getDefaultInstance());
-			items.add(ItemInit.FIRST_BLOCK.get().getDefaultInstance());
-			*/
-			
-			//CUSTOM MOD
-			items.add(ItemInit.ATM.get().getDefaultInstance());
+			// TODO Auto-generated method stub			
 			items.add(ItemInit.CREDIT_CARD_ITEM.get().getDefaultInstance());
+			items.add(ItemInit.WALLET_ITEM.get().getDefaultInstance());
+			
 			items.add(ItemInit.CENT_1.get().getDefaultInstance());
 			items.add(ItemInit.CENT_2.get().getDefaultInstance());
 			items.add(ItemInit.CENT_5.get().getDefaultInstance());
 			items.add(ItemInit.CENT_10.get().getDefaultInstance());
 			items.add(ItemInit.CENT_20.get().getDefaultInstance());
 			items.add(ItemInit.CENT_50.get().getDefaultInstance());
-			items.add(ItemInit.EURO_1.get().getDefaultInstance());
-			items.add(ItemInit.EURO_1.get().getDefaultInstance());
-			items.add(ItemInit.EURO_2.get().getDefaultInstance());
-			items.add(ItemInit.EURO_5.get().getDefaultInstance());
-			items.add(ItemInit.EURO_10.get().getDefaultInstance());
-			items.add(ItemInit.EURO_20.get().getDefaultInstance());
-			items.add(ItemInit.EURO_50.get().getDefaultInstance());
-			items.add(ItemInit.EURO_100.get().getDefaultInstance());
-			//items.add(ItemInit.EURO_200.get().getDefaultInstance());
-			items.add(ItemInit.EURO_500.get().getDefaultInstance());
-			items.add(ItemInit.EURO_10000.get().getDefaultInstance());
-			items.add(ItemInit.EURO_50000.get().getDefaultInstance());
-			items.add(ItemInit.EURO_1000000.get().getDefaultInstance());
+			items.add(ItemInit.DOLLAR_1.get().getDefaultInstance());
+			items.add(ItemInit.DOLLAR_2.get().getDefaultInstance());
+			items.add(ItemInit.DOLLAR_5.get().getDefaultInstance());
+			items.add(ItemInit.DOLLAR_10.get().getDefaultInstance());
+			items.add(ItemInit.DOLLAR_20.get().getDefaultInstance());
+			items.add(ItemInit.DOLLAR_50.get().getDefaultInstance());
+			items.add(ItemInit.DOLLAR_100.get().getDefaultInstance());
+			items.add(ItemInit.DOLLAR_500.get().getDefaultInstance());
+			items.add(ItemInit.DOLLAR_10000.get().getDefaultInstance());
+			items.add(ItemInit.DOLLAR_50000.get().getDefaultInstance());
+			items.add(ItemInit.DOLLAR_1000000.get().getDefaultInstance());
+			
+			items.add(ItemInit.LICENCE_ITEM.get().getDefaultInstance());
+			items.add(ItemInit.VAULT_CHEST_BLOCK.get().getDefaultInstance());
+			items.add(ItemInit.MONEY_PILE_BLOCK.get().getDefaultInstance());
+			items.add(ItemInit.FIRST_BLOCK.get().getDefaultInstance());
+			items.add(ItemInit.ATM.get().getDefaultInstance());
+			items.add(ItemInit.MARKETPLACE.get().getDefaultInstance());
 			//super.fill(items);
 		}
     }

@@ -1,5 +1,5 @@
 {
-  "parent": "businessplusmod:block/vault_chest",
+  "parent": "businessplusmod:block/marketplace",
   "display": {
     "gui": {
       "rotation": [ 30, 225, 0 ],

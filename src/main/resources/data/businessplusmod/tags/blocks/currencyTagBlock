@@ -1,7 +1,7 @@
 {
   "replace":false,
   "values": [
-      "businessplusmod:def_block",
+      "businessplusmod:atm",
       "businessplusmod:vault_chest"
   ]
 }

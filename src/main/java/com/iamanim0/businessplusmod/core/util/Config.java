@@ -18,8 +18,6 @@ public class Config {
     public static ForgeConfigSpec.IntValue FIRSTBLOCK_TICKS;
 
     public static ForgeConfigSpec.DoubleValue ROTATION_SPEED;
-    
-    public static ForgeConfigSpec.DoubleValue FIRSTBLOCK_SEND2;
 
     static {
 
@@ -47,14 +45,11 @@ public class Config {
         FIRSTBLOCK_MAXPOWER = SERVER_BUILDER.comment("Maximum power for the FirstBlock generator")
                 .defineInRange("maxPower", 1000000, 0, Integer.MAX_VALUE);
         FIRSTBLOCK_GENERATE = SERVER_BUILDER.comment("Power generation per one dollar item")
-                .defineInRange("generate", 1, 0, Integer.MAX_VALUE);
+                .defineInRange("generate", 1000, 0, Integer.MAX_VALUE);
         FIRSTBLOCK_SEND = SERVER_BUILDER.comment("Power generation to send per tick")
-                .defineInRange("send", 1, 0, Integer.MAX_VALUE);
+                .defineInRange("send", 100, 0, Integer.MAX_VALUE);
         FIRSTBLOCK_TICKS = SERVER_BUILDER.comment("Ticks per one dollar")
                 .defineInRange("ticks", 1, 0, Integer.MAX_VALUE);
-        
-        FIRSTBLOCK_SEND2 = SERVER_BUILDER.comment("Power generation to send per tick")
-                .defineInRange("send", 0.1, 0, Double.MAX_VALUE);
 
         SERVER_BUILDER.pop();
     }

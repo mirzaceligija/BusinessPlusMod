@@ -13,7 +13,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class ItemStackHandlerWallet extends ItemStackHandler {
 	
-	private static final ResourceLocation CURRENCY_TAG = new ResourceLocation(BusinessPlusMod.MOD_ID, "currencytagitem");
+	private static final ResourceLocation MONEY_TAG = new ResourceLocation(BusinessPlusMod.MOD_ID, "moneytagitem");
 
 	public static final int MIN_MONEY_SLOTS = 1;
 	public static final int MAX_MONEY_SLOTS = 18;
@@ -25,9 +25,6 @@ public class ItemStackHandlerWallet extends ItemStackHandler {
 	  if (numberOfSlots < MIN_MONEY_SLOTS || numberOfSlots > MAX_MONEY_SLOTS) {
 	    throw new IllegalArgumentException("Invalid number of flower slots: " + numberOfSlots);
 	  }
-	  
-	  //this.setStackInSlot(0, new ItemStack(ItemInit.COIN10_ITEM.get()));
-	  //setStackInSlot(0, new ItemStack(ItemInit.COIN10_ITEM.get()));
 	}
 	  
 	@Override
@@ -37,7 +34,7 @@ public class ItemStackHandlerWallet extends ItemStackHandler {
 	  }
 	  if (stack.isEmpty()) return false;
 	  Item item = stack.getItem();
-	  if (item.isIn(ItemTags.getCollection().get(CURRENCY_TAG))) return true;
+	  if (item.isIn(ItemTags.getCollection().get(MONEY_TAG))) return true;
 	  
 	  return false;
 	}

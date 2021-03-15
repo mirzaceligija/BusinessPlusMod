@@ -1,23 +1,28 @@
 {
-	"item.businessplusmod.coin1_item": "1 cent",
-	"item.businessplusmod.coin5_item": "5 cents",
-	"item.businessplusmod.coin10_item": "10 cents",
-	"item.businessplusmod.coin25_item": "25 cents",
-	"item.businessplusmod.coin50_item": "50 cents",
-	"item.businessplusmod.dollar1_item": "1 dollar",
-	"item.businessplusmod.dollar5_item": "5 dollars",
-	"item.businessplusmod.dollar10_item": "10 dollars",
-	"item.businessplusmod.dollar20_item": "20 dollars",
-	"item.businessplusmod.dollar50_item": "50 dollars",
-	"item.businessplusmod.dollar100_item": "100 dollars",
-	"item.businessplusmod.dollar500_item": "500 dollars",
-	"item.businessplusmod.dollar10000_item": "10 000 dollars",
-	"item.businessplusmod.dollar50000_item": "50 000 dollars",
-	"item.businessplusmod.dollar1000000_item": "1 million dollars",
-	
-	"item.businessplusmod.licence_item": "Business Licence",
+	"item.businessplusmod.credit_card_item": "Credit Card",
 	"item.businessplusmod.wallet_item": "Wallet",
+	"item.businessplusmod.licence_item": "Business Licence",
 	
+	"item.businessplusmod.cent1": "0.01$",
+	"item.businessplusmod.cent2": "0.02$",
+	"item.businessplusmod.cent5": "0.05$",
+	"item.businessplusmod.cent10": "0.10$",
+	"item.businessplusmod.cent20": "0.20$",
+	"item.businessplusmod.cent50": "0.50$",
+	"item.businessplusmod.dollar1": "1.00$",
+	"item.businessplusmod.dollar2": "2.00$",
+	"item.businessplusmod.dollar5": "5.00$",
+	"item.businessplusmod.dollar10": "10.00$",
+	"item.businessplusmod.dollar20": "20.00$",
+	"item.businessplusmod.dollar50": "50.00$",
+	"item.businessplusmod.dollar100": "100.00$",
+	"item.businessplusmod.dollar500": "500.00$",
+	"item.businessplusmod.dollar10000": "10000.00$",
+	"item.businessplusmod.dollar50000": "50000.00$",
+	"item.businessplusmod.dollar1000000": "1 million $",
+	
+	"block.businessplusmod.marketplace": "Marketplace",
+	"block.businessplusmod.atm": "ATM Machine",
 	"block.businessplusmod.firstblock": "First Block",
 	"block.businessplusmod.vault_chest": "Vault Chest",
 	"block.businessplusmod.money_pile": "Money Pile",
@@ -25,32 +30,6 @@
 	"container.firstblock": "FirstBlock",
 	"container.vault_chest": "Vault Chest",
 	"container.wallet": "Wallet",
-	
-	"itemGroup.businessplustab": "Business Plus",
-	
-	
-	
-	"item.businessplusmod.credit_card_item": "Credit Card",
-	"block.businessplusmod.atm": "ATM Machine",
-	
-	"item.businessplusmod.cent1": "0.01€",
-	"item.businessplusmod.cent2": "0.02€",
-	"item.businessplusmod.cent5": "0.05€",
-	"item.businessplusmod.cent10": "0.10€",
-	"item.businessplusmod.cent20": "0.20€",
-	"item.businessplusmod.cent50": "0.50€",
-	"item.businessplusmod.euro1": "1.00€",
-	"item.businessplusmod.euro2": "2.00€",
-	"item.businessplusmod.euro5": "5.00€",
-	"item.businessplusmod.euro10": "10.00€",
-	"item.businessplusmod.euro20": "20.00€",
-	"item.businessplusmod.euro50": "50.00€",
-	"item.businessplusmod.euro100": "100.00€",
-	"item.businessplusmod.euro200": "200.00€",
-	"item.businessplusmod.euro500": "500.00€",
-	"item.businessplusmod.euro10000": "10000.00€",
-	"item.businessplusmod.euro50000": "50000.00€",
-	"item.businessplusmod.euro1000000": "1 million €",
 	
 	"container.businessplusmod.atm_in": "ATM Input",
 	"container.businessplusmod.atm_out": "ATM Output",
@@ -61,5 +40,7 @@
 	"container.businessplusmod.atm_wrong_password": "Your PIN code wasn't correct. Pay attention, you have only @s attempts. (Confirm with the green button)",
 	"container.businessplusmod.atm_card_blocked": "Credit Card was blocked due to 3 incorrect attempts",
 	"container.businessplusmod.atm_error": "An error occurred. Please close ATM and try again later!",
-	"container.businessplusmod.atm_not_available": "This ATM is currently occupied, please come back later."
+	"container.businessplusmod.atm_not_available": "This ATM is currently occupied, please come back later.",
+	
+	"itemGroup.businessplustab": "Business Plus"
 }

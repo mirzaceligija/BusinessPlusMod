@@ -2,7 +2,7 @@ package com.iamanim0.businessplusmod.common.items;
 
 
 import com.iamanim0.businessplusmod.common.containers.WalletContainer;
-import com.iamanim0.businessplusmod.core.util.CapabilityProviderWallet;
+import com.iamanim0.businessplusmod.common.capability.provider.WalletProvider;
 import com.iamanim0.businessplusmod.core.util.ItemStackHandlerWallet;
 
 import net.minecraft.entity.LivingEntity;
@@ -144,13 +144,13 @@ public class WalletItem extends Item {
 	@Nonnull
 	@Override
 	public ICapabilityProvider initCapabilities(ItemStack stack, CompoundNBT oldCapNbt) {
-		return new CapabilityProviderWallet();
+		return new WalletProvider();
 	}
 	
 	private static ItemStackHandlerWallet getItemStackHandlerWallet(ItemStack itemStack) {
 		IItemHandler wallet = itemStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null);
 	    if (wallet == null || !(wallet instanceof ItemStackHandlerWallet)) {
-	    	LOGGER.error("ItemFlowerBag did not have the expected ITEM_HANDLER_CAPABILITY");
+	    	LOGGER.error("ItemWallet did not have the expected ITEM_HANDLER_CAPABILITY");
 	    	return new ItemStackHandlerWallet(1);
 	    }
 	    return (ItemStackHandlerWallet)wallet;

@@ -1,10 +1,6 @@
 package com.iamanim0.businessplusmod.common.tiles;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -14,7 +10,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -30,17 +25,16 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.iamanim0.businessplusmod.BusinessPlusMod;
-import com.iamanim0.businessplusmod.common.items.CurrencyItem;
-import com.iamanim0.businessplusmod.core.init.ItemInit;
+import com.iamanim0.businessplusmod.common.capability.storage.CustomEnergyStorage;
+import com.iamanim0.businessplusmod.common.items.MoneyItem;
 import com.iamanim0.businessplusmod.core.init.TileEntityTypeInit;
 import com.iamanim0.businessplusmod.core.util.Config;
-import com.iamanim0.businessplusmod.core.util.CustomEnergyStorage;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class FirstBlockTile extends TileEntity implements ITickableTileEntity, ICapabilityProvider, INamedContainerProvider {
+public class FirstBlockTile extends TileEntity implements ITickableTileEntity, ICapabilityProvider {
 
-	private static final ResourceLocation CURRENCY_TAG = new ResourceLocation(BusinessPlusMod.MOD_ID, "currencytagitem");
+	private static final ResourceLocation MONEY_TAG = new ResourceLocation(BusinessPlusMod.MOD_ID, "moneytagitem");
 	
 	private ItemStackHandler itemHandler = createHandler();
     private CustomEnergyStorage energyStorage = createEnergy();
@@ -48,6 +42,7 @@ public class FirstBlockTile extends TileEntity implements ITickableTileEntity, I
     private LazyOptional<IEnergyStorage> energy = LazyOptional.of(() -> energyStorage);
 
     private int counter;
+    public static ForgeConfigSpec.IntValue stackValue;
 
     public FirstBlockTile(TileEntityType<?> tileEntityTypeIn) {
 		super(tileEntityTypeIn);
@@ -57,38 +52,38 @@ public class FirstBlockTile extends TileEntity implements ITickableTileEntity, I
 	public FirstBlockTile() {
 		this(TileEntityTypeInit.FIRSTBLOCK.get());
 	}
-
-    public static ForgeConfigSpec.IntValue stackValue;
-	
 	
     @Override
-    public void tick() {
-        if (world.isRemote) {
+    public void remove() {
+        super.remove();
+        handler.invalidate();
+        energy.invalidate();
+    }
+    
+	@Override
+	public void tick() {
+		// TODO Auto-generated method stub
+		if (world.isRemote) {
             return;
         }
-        
-        ItemStack stack = itemHandler.getStackInSlot(0);
-
-        if (counter > 0) {
+		
+		
+		if (counter > 0) {
             counter--;
-        	
             if (counter <= 0) {
-            	if (stack.getItem().isIn(ItemTags.getCollection().get(CURRENCY_TAG))) {
-            		CurrencyItem cItem = (CurrencyItem) stack.getItem();
-	            	energyStorage.addEnergy(cItem.getCurrencyValue());
-            	}
+                energyStorage.addEnergy(MoneyItem.getCoinValue(itemHandler.getStackInSlot(0).getItem()));
                 //energyStorage.addEnergy(Config.FIRSTBLOCK_GENERATE.get());
             }
             markDirty();
         }
 
         if (counter <= 0) {
-        	
-            if (stack.getItem().isIn(ItemTags.getCollection().get(CURRENCY_TAG))) {
-                    itemHandler.extractItem(0, 1, false);
-                    counter = Config.FIRSTBLOCK_TICKS.get();
-                    markDirty();
-            	}
+        	ItemStack stack = itemHandler.getStackInSlot(0);
+            if (stack.getItem().isIn(ItemTags.getCollection().get(MONEY_TAG))) {
+            	itemHandler.extractItem(0, 1, false);
+                counter = Config.FIRSTBLOCK_TICKS.get();
+                markDirty();
+            }
         }
 
         BlockState blockState = world.getBlockState(pos);
@@ -98,7 +93,7 @@ public class FirstBlockTile extends TileEntity implements ITickableTileEntity, I
         }
 
         sendOutPower();
-    }
+	}
 
     private void sendOutPower() {
         AtomicInteger capacity = new AtomicInteger(energyStorage.getEnergyStored());
@@ -108,23 +103,10 @@ public class FirstBlockTile extends TileEntity implements ITickableTileEntity, I
                 if (te != null) {
                     boolean doContinue = te.getCapability(CapabilityEnergy.ENERGY, direction).map(handler -> {
                                 if (handler.canReceive()) {
-                                	
-                                	ItemStack stack = itemHandler.getStackInSlot(0);
-                                    if (stack.getItem().isIn(ItemTags.getCollection().get(CURRENCY_TAG))) {
-                                    	@SuppressWarnings("unused")
-										CurrencyItem cItem = (CurrencyItem) stack.getItem();
-                                		int received = handler.receiveEnergy(Math.min(capacity.get(), Config.FIRSTBLOCK_SEND.get()), false);
-                                		capacity.addAndGet(-received);
-                                		
-                                		 if (stack.getItem() == ItemInit.COIN25_ITEM.get()) {
-                                			 energyStorage.consumeEnergy(0.25);
-                                             markDirty();
-                                		 } else  {
-                                			 energyStorage.consumeEnergy(received);
-                                             markDirty();
-                                		 }
-                                        
-                                    }                   
+                                	int received = handler.receiveEnergy(Math.min(capacity.get(), Config.FIRSTBLOCK_SEND.get()), false);
+                                    capacity.addAndGet(-received);
+                                    energyStorage.consumeEnergy(received);
+                                    markDirty();
                                     return capacity.get() > 0;
                                 } else {
                                     return true;
@@ -169,13 +151,13 @@ public class FirstBlockTile extends TileEntity implements ITickableTileEntity, I
 
             @Override
             public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                return stack.getItem().isIn(ItemTags.getCollection().get(CURRENCY_TAG));
+                return stack.getItem().isIn(ItemTags.getCollection().get(MONEY_TAG));
             }
 
             @Nonnull
             @Override
             public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-                if (stack.getItem().isIn(ItemTags.getCollection().get(CURRENCY_TAG))) {
+                if (!stack.getItem().isIn(ItemTags.getCollection().get(MONEY_TAG))) {
                     return stack;
                 }
                 return super.insertItem(slot, stack, simulate);
@@ -203,26 +185,4 @@ public class FirstBlockTile extends TileEntity implements ITickableTileEntity, I
         }
         return super.getCapability(cap, side);
     }
-    
-    
-    @Override
-    public void remove() {
-        super.remove();
-        handler.invalidate();
-        energy.invalidate();
-    }
-    
-    /** inamed container provider */
-
-	@Override
-	public Container createMenu(int p_createMenu_1_, PlayerInventory p_createMenu_2_, PlayerEntity p_createMenu_3_) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ITextComponent getDisplayName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

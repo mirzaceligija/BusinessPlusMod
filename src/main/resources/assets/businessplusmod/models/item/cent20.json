@@ -3,7 +3,7 @@
 	"textures": {
 	"layer0": "businessplusmod:items/cent20"
 	},
-	"display": {
+  "display": {
     "thirdperson_righthand": {
       "rotation": [
         0,

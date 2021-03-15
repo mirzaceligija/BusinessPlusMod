@@ -41,27 +41,27 @@ public class MoneyItem extends Item {
             case 50:
                 return ItemInit.CENT_50.get();
             case 100:
-                return ItemInit.EURO_1.get();
+                return ItemInit.DOLLAR_1.get();
             case 200:
-                return ItemInit.EURO_2.get();
+                return ItemInit.DOLLAR_2.get();
             case 500:
-                return ItemInit.EURO_5.get();
+                return ItemInit.DOLLAR_5.get();
             case 1000:
-                return ItemInit.EURO_10.get();
+                return ItemInit.DOLLAR_10.get();
             case 2000:
-                return ItemInit.EURO_20.get();
+                return ItemInit.DOLLAR_20.get();
             case 5000:
-                return ItemInit.EURO_50.get();
+                return ItemInit.DOLLAR_50.get();
             case 10000:
-                return ItemInit.EURO_100.get();
+                return ItemInit.DOLLAR_100.get();
             case 50000:
-                return ItemInit.EURO_500.get();
+                return ItemInit.DOLLAR_500.get();
             case 1000000:
-                return ItemInit.EURO_10000.get();
+                return ItemInit.DOLLAR_10000.get();
             case 5000000:
-                return ItemInit.EURO_50000.get();
+                return ItemInit.DOLLAR_50000.get();
             case 100000000:
-                return ItemInit.EURO_1000000.get();
+                return ItemInit.DOLLAR_1000000.get();
         }
         return Items.AIR;
     }

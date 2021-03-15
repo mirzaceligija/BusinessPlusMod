@@ -3,6 +3,7 @@ package com.iamanim0.businessplusmod.core.init;
 import com.iamanim0.businessplusmod.BusinessPlusMod;
 import com.iamanim0.businessplusmod.common.blocks.AtmBlock;
 import com.iamanim0.businessplusmod.common.blocks.FirstBlock;
+import com.iamanim0.businessplusmod.common.blocks.MarketplaceBlock;
 import com.iamanim0.businessplusmod.common.blocks.VaultChestBlock;
 
 import net.minecraft.block.AbstractBlock;
@@ -43,6 +44,11 @@ public class BlockInit {
 	
 	public static final RegistryObject<Block> ATM_BLOCK  = BLOCKS.register("atm", 
 			() -> new AtmBlock(AbstractBlock.Properties.create(Material.IRON)
+	                .sound(SoundType.METAL)
+	                .hardnessAndResistance(2.0f)));
+	
+	public static final RegistryObject<Block> MARKETPLACE  = BLOCKS.register("marketplace", 
+			() -> new MarketplaceBlock(AbstractBlock.Properties.create(Material.IRON)
 	                .sound(SoundType.METAL)
 	                .hardnessAndResistance(2.0f)));
 }

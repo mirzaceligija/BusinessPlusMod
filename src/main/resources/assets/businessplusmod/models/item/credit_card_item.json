@@ -1,7 +1,7 @@
 {
 	"parent": "item/generated",
 	"textures": {
-	"layer0": "businessplusmod:items/credit_card"
+	"layer0": "businessplusmod:items/credit_card00"
 	},
   "display": {
     "thirdperson_righthand": {
