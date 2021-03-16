@@ -2,6 +2,7 @@ package com.iamanim0.businessplusmod.core.init;
 
 import com.iamanim0.businessplusmod.BusinessPlusMod;
 import com.iamanim0.businessplusmod.common.tiles.FirstBlockTile;
+import com.iamanim0.businessplusmod.common.tiles.MarketTileEntity;
 import com.iamanim0.businessplusmod.common.tiles.MarketplaceTileEntity;
 import com.iamanim0.businessplusmod.common.tiles.AtmTileEntity;
 import com.iamanim0.businessplusmod.common.tiles.VaultChestTileEntity;
@@ -25,6 +26,8 @@ public class TileEntityTypeInit {
 			() -> TileEntityType.Builder.create(AtmTileEntity::new, BlockInit.ATM_BLOCK.get()).build(null));
 	
 	public static final RegistryObject<TileEntityType<MarketplaceTileEntity>> MARKETPLACE = TILE_ENTITY_TYPES.register("marketplace", 
-			() -> TileEntityType.Builder.create(MarketplaceTileEntity::new, BlockInit.ATM_BLOCK.get()).build(null));
+			() -> TileEntityType.Builder.create(MarketplaceTileEntity::new, BlockInit.MARKETPLACE.get()).build(null));
 	
+	public static final RegistryObject<TileEntityType<MarketTileEntity>> MARKET = TILE_ENTITY_TYPES.register("market", 
+			() -> TileEntityType.Builder.create(MarketTileEntity::new, BlockInit.MARKET.get()).build(null));
 }

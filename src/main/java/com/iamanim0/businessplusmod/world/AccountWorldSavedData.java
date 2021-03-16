@@ -151,7 +151,7 @@ public class AccountWorldSavedData extends WorldSavedData {
         }
 
         public PlayerAccount(String playerName) {
-            this(playerName, 50000);
+            this(playerName, 0);
         }
 
         public String getPlayerName() {

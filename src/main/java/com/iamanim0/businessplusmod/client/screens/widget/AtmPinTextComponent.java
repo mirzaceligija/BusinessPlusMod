@@ -7,7 +7,7 @@ public class AtmPinTextComponent {
     private String text = "";
     private boolean hasDot = false;
     private int charsAfterDot = 0;
-    private final char EURO = (char) 0x20AC;
+    private final char EURO = (char) 0x0024;
 
 
     private DisplayMode displayMode = DisplayMode.PIN;

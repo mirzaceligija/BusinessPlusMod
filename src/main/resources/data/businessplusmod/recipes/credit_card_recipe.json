@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:paper"
+        },
+        {
+            "item": "businessplusmod:dollar5"
+        }
+    ],
+    "result": {
+        "item": "businessplusmod:credit_card_item",
+        "count": 1
+    }
+}

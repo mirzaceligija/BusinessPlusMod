@@ -3,6 +3,8 @@ package com.iamanim0.businessplusmod.client.utils;
 import com.iamanim0.businessplusmod.BusinessPlusMod;
 import com.iamanim0.businessplusmod.client.screens.AtmScreen;
 import com.iamanim0.businessplusmod.client.screens.FirstBlockScreen;
+import com.iamanim0.businessplusmod.client.screens.MarketScreen;
+import com.iamanim0.businessplusmod.client.screens.MarketplaceScreen;
 import com.iamanim0.businessplusmod.client.screens.VaultChestScreen;
 import com.iamanim0.businessplusmod.client.screens.WalletScreen;
 import com.iamanim0.businessplusmod.core.init.ContainerTypeInit;
@@ -23,5 +25,7 @@ public class ClientEventBusSubscriber {
 		ScreenManager.registerFactory(ContainerTypeInit.WALLET.get(), WalletScreen::new);
 		ScreenManager.registerFactory(ContainerTypeInit.FIRSTBLOCK.get(), FirstBlockScreen::new);
 		ScreenManager.registerFactory(ContainerTypeInit.ATM.get(), AtmScreen::new);
+		ScreenManager.registerFactory(ContainerTypeInit.MARKETPLACE.get(), MarketplaceScreen::new);
+		ScreenManager.registerFactory(ContainerTypeInit.MARKET.get(), MarketScreen::new);
 	}
 }

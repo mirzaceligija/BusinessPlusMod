@@ -50,5 +50,5 @@ public class ItemInit {
 	public static final RegistryObject<BlockItem> MONEY_PILE_BLOCK = ITEMS.register("money_pile", () -> new BlockItem(BlockInit.MONEY_PILE.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
 	public static final RegistryObject<BlockItem> FIRST_BLOCK = ITEMS.register("firstblock", () -> new BlockItem(BlockInit.FIRSTBLOCK.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
 	public static final RegistryObject<BlockItem> MARKETPLACE = ITEMS.register("marketplace", () -> new BlockItem(BlockInit.MARKETPLACE.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
-
+	public static final RegistryObject<BlockItem> MARKET = ITEMS.register("market", () -> new BlockItem(BlockInit.MARKET.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
 }

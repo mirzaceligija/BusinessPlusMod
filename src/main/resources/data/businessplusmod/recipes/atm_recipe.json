@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#B#",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:iron_block"
+        },
+        "B": {
+            "item": "businessplusmod:dollar50"
+        }
+    },
+    "result": {
+        "item": "businessplusmod:atm",
+        "count": 1
+    }
+}

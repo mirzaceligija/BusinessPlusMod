@@ -158,6 +158,7 @@ public class BusinessPlusMod
 			items.add(ItemInit.FIRST_BLOCK.get().getDefaultInstance());
 			items.add(ItemInit.ATM.get().getDefaultInstance());
 			items.add(ItemInit.MARKETPLACE.get().getDefaultInstance());
+			items.add(ItemInit.MARKET.get().getDefaultInstance());
 			//super.fill(items);
 		}
     }
