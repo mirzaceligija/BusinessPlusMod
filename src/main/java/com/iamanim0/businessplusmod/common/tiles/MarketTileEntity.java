@@ -86,9 +86,9 @@ public class MarketTileEntity extends TileEntity implements ITickableTileEntity,
         stockContents.setInventorySlotContents(26, new ItemStack(Items.REDSTONE_BLOCK.getItem(), 1));
         stockContents.setInventorySlotContents(27, new ItemStack(Items.GLOWSTONE.getItem(), 1));
         
-        //for(int i=0; i < stockContents.getSizeInventory(); i++) {
-        	//stockContents.getStackInSlot(i).setDisplayName(new StringTextComponent( stockContents.getStackInSlot(i).getDisplayName().getString() +" - "+ (PriceList.getPriceForItemORE(stockContents.getStackInSlot(i))/100.00) + "$"));
-        //}
+        for(int i=0; i < stockContents.getSizeInventory(); i++) {
+        	stockContents.getStackInSlot(i).setDisplayName(new StringTextComponent( stockContents.getStackInSlot(i).getDisplayName().getString() +" - "+ (PriceList.getPriceForItemMINER(stockContents.getStackInSlot(i), 100)/100.00) + "$"));
+        }
 	}
 	
 	public ItemStack getStockContents(int index) {

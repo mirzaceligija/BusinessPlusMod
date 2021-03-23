@@ -40,8 +40,8 @@ public class TradeInTileEntity  extends TileEntity implements ITickableTileEntit
 	    		"miner", "farmer"
 	    };
 	
-	private static int SELLING_RATE;
-	private static String CATEGORY;
+	private final int SELLING_RATE;
+	private final String CATEGORY;
 
 	public static final int STOCK_ROW_COUNT = 7;
     public static final int STOCK_COLUMN_COUNT = 12;
@@ -60,6 +60,8 @@ public class TradeInTileEntity  extends TileEntity implements ITickableTileEntit
 	public TradeInTileEntity() {
 		// TODO Auto-generated constructor stub
 		super(TileEntityTypeInit.TRADEIN_MINER_100.get());
+		this.SELLING_RATE = 0;
+		this.CATEGORY = "invalid";
 	}
 	
 	private String ctor = "TileEntityTypeInit.TRADEIN_MINER_100";
@@ -94,13 +96,14 @@ public class TradeInTileEntity  extends TileEntity implements ITickableTileEntit
 	    	return;
 	    } else {
 	    	if(this.CATEGORY == "miner" && this.inputContents.getStackInSlot(0).getItem().isIn(ItemTags.getCollection().get(MINER_TAG))) {
-	    		System.out.println("TICK REACTION");
 	    		this.inputContents.inputMoney(this.inputContents.getStackInSlot(0), this.SELLING_RATE);
 	    		this.currentMoney = this.inputContents.getMoneyCount();
+	    		System.out.println("TRENUTNO MONEY IN TILE ENTITY --> " + this.currentMoney);
 	    	} else if (this.CATEGORY == "farmer" && this.inputContents.getStackInSlot(0).getItem().isIn(ItemTags.getCollection().get(FARMER_TAG))) {
 	    		System.out.println("TICK REACTION");
 	    		this.inputContents.inputMoney(this.inputContents.getStackInSlot(0), this.SELLING_RATE);
 	    		this.currentMoney = this.inputContents.getMoneyCount();
+	    		System.out.println("TRENUTNO MONEY IN TILE ENTITY --> " + this.currentMoney);
 	    	}
 	    }
 	}
@@ -247,8 +250,8 @@ public class TradeInTileEntity  extends TileEntity implements ITickableTileEntit
         stockContents.setInventorySlotContents(27, new ItemStack(Items.GLOWSTONE.getItem(), 1));
         
         for(int i=0; i < stockContents.getSizeInventory(); i++) {
-        	stockContents.getStackInSlot(i).setDisplayName(stockContents.getStackInSlot(i).getDisplayName());
-        }
+    		stockContents.getStackInSlot(i).setDisplayName(new StringTextComponent( stockContents.getStackInSlot(i).getDisplayName().getString() +" - "+ (PriceList.getPriceForItemMINER(stockContents.getStackInSlot(i), this.SELLING_RATE)/100.00) + "$"));
+    	}
     }
 	
 	public void generateStockContentsFARMER() {	

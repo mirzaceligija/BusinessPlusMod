@@ -72,12 +72,16 @@ public class TradeInContents implements IInventory {
     }
     
     public void inputMoney(ItemStack stack, int rate) {
-    	System.out.println("INPUT FROM TICK REACTION");
     	removeStackFromSlot(0);
-    	if(stack.getItem().isIn(ItemTags.getCollection().get(MINER_TAG)))
+    	if(stack.getItem().isIn(ItemTags.getCollection().get(MINER_TAG))) {
+    		System.out.println("CIJENA ZA ITEM -->" + PriceList.getPriceForItemMINER(stack, rate) * stack.getCount());
     		this.moneyIn = PriceList.getPriceForItemMINER(stack, rate) * stack.getCount();
+    		System.out.println("MONEY IN-->" + this.moneyIn);
+    	}
     	else if (stack.getItem().isIn(ItemTags.getCollection().get(FARMER_TAG))) {
     		this.moneyIn = PriceList.getPriceForItemFARMER(stack, rate) * stack.getCount();
+    		System.out.println("CIJENA ZA ITEM -->" + PriceList.getPriceForItemFARMER(stack, rate) * stack.getCount());
+    		System.out.println("MONEY IN-->" + this.moneyIn);
     	} else
     		this.moneyIn = 0;
     }
