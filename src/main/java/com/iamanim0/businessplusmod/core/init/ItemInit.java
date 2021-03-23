@@ -1,7 +1,9 @@
 package com.iamanim0.businessplusmod.core.init;
 
 import com.iamanim0.businessplusmod.BusinessPlusMod;
+import com.iamanim0.businessplusmod.common.items.BusinessLicenceFarmerItem;
 import com.iamanim0.businessplusmod.common.items.BusinessLicenceItem;
+import com.iamanim0.businessplusmod.common.items.BusinessLicenceMinerItem;
 import com.iamanim0.businessplusmod.common.items.CreditCardItem;
 import com.iamanim0.businessplusmod.common.items.MoneyItem;
 import com.iamanim0.businessplusmod.common.items.WalletItem;
@@ -22,8 +24,12 @@ public class ItemInit {
 	public static final RegistryObject<BusinessLicenceItem> LICENCE_ITEM = ITEMS.register("licence_item", () -> new BusinessLicenceItem(new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
 	public static final RegistryObject<CreditCardItem> CREDIT_CARD_ITEM = ITEMS.register("credit_card_item", () -> new CreditCardItem(new Item.Properties().maxStackSize(1).group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
 	
-	// Money		
+	//LICENCES
+	public static final RegistryObject<BusinessLicenceMinerItem> MINER_LICENCE_ITEM = ITEMS.register("miner_licence_item", () -> new BusinessLicenceMinerItem(new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
+	public static final RegistryObject<BusinessLicenceFarmerItem> FARMER_LICENCE_ITEM = ITEMS.register("farmer_licence_item", () -> new BusinessLicenceFarmerItem(new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
 	
+	
+	// Money		
 	public static final RegistryObject<Item> CENT_1 = ITEMS.register("cent1", () -> new MoneyItem(new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP), 1));
     public static final RegistryObject<Item> CENT_2 = ITEMS.register("cent2", () -> new MoneyItem(new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP), 2));
     public static final RegistryObject<Item> CENT_5 = ITEMS.register("cent5", () -> new MoneyItem(new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP), 5));
@@ -48,7 +54,14 @@ public class ItemInit {
 	public static final RegistryObject<BlockItem> ATM = ITEMS.register("atm", () -> new BlockItem(BlockInit.ATM_BLOCK.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
 	public static final RegistryObject<BlockItem> VAULT_CHEST_BLOCK = ITEMS.register("vault_chest", () -> new BlockItem(BlockInit.VAULT_CHEST.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
 	public static final RegistryObject<BlockItem> MONEY_PILE_BLOCK = ITEMS.register("money_pile", () -> new BlockItem(BlockInit.MONEY_PILE.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
-	public static final RegistryObject<BlockItem> FIRST_BLOCK = ITEMS.register("firstblock", () -> new BlockItem(BlockInit.FIRSTBLOCK.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
-	public static final RegistryObject<BlockItem> MARKETPLACE = ITEMS.register("marketplace", () -> new BlockItem(BlockInit.MARKETPLACE.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
 	public static final RegistryObject<BlockItem> MARKET = ITEMS.register("market", () -> new BlockItem(BlockInit.MARKET.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
+
+	public static final RegistryObject<BlockItem> TRADEIN_ORE = ITEMS.register("tradein_ore", () -> new BlockItem(BlockInit.TRADEIN_ORE.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
+
+	// === MACHINES === //
+	public static final RegistryObject<BlockItem> TRADEIN_MINER_40 = ITEMS.register("tradein_miner_40", () -> new BlockItem(BlockInit.TRADEIN_MINER_40.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
+	public static final RegistryObject<BlockItem> TRADEIN_MINER_100 = ITEMS.register("tradein_miner_100", () -> new BlockItem(BlockInit.TRADEIN_MINER_100.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
+	public static final RegistryObject<BlockItem> TRADEIN_FARMER_40 = ITEMS.register("tradein_farmer_40", () -> new BlockItem(BlockInit.TRADEIN_FARMER_40.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
+	public static final RegistryObject<BlockItem> TRADEIN_FARMER_100 = ITEMS.register("tradein_farmer_100", () -> new BlockItem(BlockInit.TRADEIN_FARMER_100.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
+
 }

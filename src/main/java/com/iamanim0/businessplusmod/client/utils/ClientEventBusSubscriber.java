@@ -2,9 +2,9 @@ package com.iamanim0.businessplusmod.client.utils;
 
 import com.iamanim0.businessplusmod.BusinessPlusMod;
 import com.iamanim0.businessplusmod.client.screens.AtmScreen;
-import com.iamanim0.businessplusmod.client.screens.FirstBlockScreen;
 import com.iamanim0.businessplusmod.client.screens.MarketScreen;
-import com.iamanim0.businessplusmod.client.screens.MarketplaceScreen;
+import com.iamanim0.businessplusmod.client.screens.TradeInBlockScreen;
+import com.iamanim0.businessplusmod.client.screens.TradeInBlockScreen2;
 import com.iamanim0.businessplusmod.client.screens.VaultChestScreen;
 import com.iamanim0.businessplusmod.client.screens.WalletScreen;
 import com.iamanim0.businessplusmod.core.init.ContainerTypeInit;
@@ -23,9 +23,9 @@ public class ClientEventBusSubscriber {
 	public static void clientSetup(FMLClientSetupEvent event) {
 		ScreenManager.registerFactory(ContainerTypeInit.VAULT_CHEST.get(), VaultChestScreen::new);
 		ScreenManager.registerFactory(ContainerTypeInit.WALLET.get(), WalletScreen::new);
-		ScreenManager.registerFactory(ContainerTypeInit.FIRSTBLOCK.get(), FirstBlockScreen::new);
 		ScreenManager.registerFactory(ContainerTypeInit.ATM.get(), AtmScreen::new);
-		ScreenManager.registerFactory(ContainerTypeInit.MARKETPLACE.get(), MarketplaceScreen::new);
 		ScreenManager.registerFactory(ContainerTypeInit.MARKET.get(), MarketScreen::new);
+		ScreenManager.registerFactory(ContainerTypeInit.TRADEIN_ORE.get(), TradeInBlockScreen::new);
+		ScreenManager.registerFactory(ContainerTypeInit.TRADEIN.get(), TradeInBlockScreen2::new);
 	}
 }

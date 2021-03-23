@@ -64,7 +64,7 @@ public class ItemStackHandlerWallet extends ItemStackHandler {
 	  isDirty = false;
 	  return currentState;
 	}
-	  
+
 	/** Called whenever the contents of the bag have changed.
 	*   We need to do this manually in order to make sure that the server sends a synchronisation packet to the client for the parent ItemStack
 	*   The reason is because capability information is not stored in the ItemStack nbt tag, so vanilla does not notice when

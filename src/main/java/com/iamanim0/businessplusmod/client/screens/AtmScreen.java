@@ -59,7 +59,7 @@ public class AtmScreen extends ContainerScreen<AtmContainer> {
         final double height = this.getMinecraft().getMainWindow().getFramebufferHeight();
         GL11.glEnable(GL11.GL_SCISSOR_TEST);
         GL11.glScissor((int) ((this.guiLeft + 34 + 10) * scale), (int) (height - (this.guiTop + 28) * scale),
-                (int) (156 * scale), (int) (14 * scale));
+                (int) (156 * scale), (int) (14 * scale)); 
         displayMain.tick();
         this.font.drawString(matrixStack, displayMain.getFormattedText(), 44 - displayMain.getOffset(), 17, 16777215);
         GL11.glDisable(GL11.GL_SCISSOR_TEST);

@@ -2,9 +2,10 @@ package com.iamanim0.businessplusmod.core.init;
 
 import com.iamanim0.businessplusmod.BusinessPlusMod;
 import com.iamanim0.businessplusmod.common.blocks.AtmBlock;
-import com.iamanim0.businessplusmod.common.blocks.FirstBlock;
 import com.iamanim0.businessplusmod.common.blocks.MarketBlock;
-import com.iamanim0.businessplusmod.common.blocks.MarketplaceBlock;
+import com.iamanim0.businessplusmod.common.blocks.MoneyPileBlock;
+import com.iamanim0.businessplusmod.common.blocks.TradeInBlock;
+import com.iamanim0.businessplusmod.common.blocks.TradeInOreBlock;
 import com.iamanim0.businessplusmod.common.blocks.VaultChestBlock;
 
 import net.minecraft.block.AbstractBlock;
@@ -12,7 +13,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -31,25 +31,14 @@ public class BlockInit {
 					.sound(SoundType.ANVIL)));
 
 	public static final RegistryObject<Block> MONEY_PILE = BLOCKS.register("money_pile", 
-			() -> new Block(AbstractBlock.Properties.create(Material.IRON, MaterialColor.BLUE)
+			() -> new MoneyPileBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.BLUE)
 					.hardnessAndResistance(15f, 30f)
 					.harvestTool(ToolType.PICKAXE)
 					.harvestLevel(2)
 					.sound(SoundType.WOOD)));
 	
-	public static final RegistryObject<Block> FIRSTBLOCK = BLOCKS.register("firstblock", 
-			() -> new FirstBlock(AbstractBlock.Properties.create(Material.IRON)
-	                .sound(SoundType.METAL)
-	                .hardnessAndResistance(2.0f)
-	                .setLightLevel(state -> state.get(BlockStateProperties.POWERED) ? 14 : 0)));
-	
 	public static final RegistryObject<Block> ATM_BLOCK  = BLOCKS.register("atm", 
 			() -> new AtmBlock(AbstractBlock.Properties.create(Material.IRON)
-	                .sound(SoundType.METAL)
-	                .hardnessAndResistance(2.0f)));
-	
-	public static final RegistryObject<Block> MARKETPLACE  = BLOCKS.register("marketplace", 
-			() -> new MarketplaceBlock(AbstractBlock.Properties.create(Material.IRON)
 	                .sound(SoundType.METAL)
 	                .hardnessAndResistance(2.0f)));
 	
@@ -57,4 +46,34 @@ public class BlockInit {
 			() -> new MarketBlock(AbstractBlock.Properties.create(Material.IRON)
 	                .sound(SoundType.METAL)
 	                .hardnessAndResistance(2.0f)));
+	
+	public static final RegistryObject<Block> TRADEIN_ORE  = BLOCKS.register("tradein_ore", 
+			() -> new TradeInOreBlock(AbstractBlock.Properties.create(Material.IRON)
+	                .sound(SoundType.METAL)
+	                .hardnessAndResistance(2.0f)));
+	
+	
+	// === TRADE MACHINES === //
+	
+	/*
+	public static final RegistryObject<Block> TRADEIN = BLOCKS.register("tradein", 
+			() -> new TradeInBlock(AbstractBlock.Properties.create(Material.IRON)
+	                .hardnessAndResistance(2.0f), 40, "miner"));
+	                */
+	
+	public static final RegistryObject<Block> TRADEIN_MINER_40  = BLOCKS.register("tradein_miner_40", 
+			() -> new TradeInBlock(AbstractBlock.Properties.create(Material.IRON)
+	                .hardnessAndResistance(2.0f), 40, "miner"));
+	
+	public static final RegistryObject<Block> TRADEIN_MINER_100  = BLOCKS.register("tradein_miner_100", 
+			() -> new TradeInBlock(AbstractBlock.Properties.create(Material.IRON)
+	                .hardnessAndResistance(2.0f), 100, "miner"));
+	
+	public static final RegistryObject<Block> TRADEIN_FARMER_40  = BLOCKS.register("tradein_farmer_40", 
+			() -> new TradeInBlock(AbstractBlock.Properties.create(Material.IRON)
+	                .hardnessAndResistance(2.0f), 40, "farmer"));
+	
+	public static final RegistryObject<Block> TRADEIN_FARMER_100  = BLOCKS.register("tradein_farmer_100", 
+			() -> new TradeInBlock(AbstractBlock.Properties.create(Material.IRON)
+	                .hardnessAndResistance(2.0f), 100, "farmer"));
 }

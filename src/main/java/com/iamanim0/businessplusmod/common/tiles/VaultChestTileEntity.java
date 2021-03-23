@@ -32,7 +32,7 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 
 public class VaultChestTileEntity extends LockableLootTileEntity {
 
-	private NonNullList<ItemStack> chestContents = NonNullList.withSize(36, ItemStack.EMPTY);
+	public NonNullList<ItemStack> chestContents = NonNullList.withSize(36, ItemStack.EMPTY);
 	protected int numPlayerUsing;
 	private IItemHandlerModifiable items = createHandler();
 	private LazyOptional<IItemHandlerModifiable> itemHandler = LazyOptional.of(() -> items);
@@ -41,12 +41,12 @@ public class VaultChestTileEntity extends LockableLootTileEntity {
 		super(typeIn);
 		// TODO Auto-generated constructor stub
 		
-		setInventorySlotContents(0, new ItemStack(Items.CHARCOAL.getItem(), 1));
-		setInventorySlotContents(1, new ItemStack(Items.COAL.getItem(), 1));
-		setInventorySlotContents(2, new ItemStack(Items.IRON_INGOT.getItem(), 1));
-		setInventorySlotContents(3, new ItemStack(Items.GOLD_INGOT.getItem(), 1));
-		setInventorySlotContents(4, new ItemStack(Items.DIAMOND.getItem(), 1));
-		setInventorySlotContents(5, new ItemStack(Items.EMERALD.getItem(), 1));
+		this.setInventorySlotContents(0, new ItemStack(Items.CHARCOAL.getItem(), 1));
+		this.setInventorySlotContents(1, new ItemStack(Items.COAL.getItem(), 1));
+		this.setInventorySlotContents(2, new ItemStack(Items.IRON_INGOT.getItem(), 1));
+		this.setInventorySlotContents(3, new ItemStack(Items.GOLD_INGOT.getItem(), 1));
+		this.setInventorySlotContents(4, new ItemStack(Items.DIAMOND.getItem(), 1));
+		this.setInventorySlotContents(5, new ItemStack(Items.EMERALD.getItem(), 1));
 		
 		this.chestContents.set(numPlayerUsing, new ItemStack(Items.NETHERRACK.getItem(), 1));
 	}
@@ -54,6 +54,19 @@ public class VaultChestTileEntity extends LockableLootTileEntity {
 	public VaultChestTileEntity() {
 		this(TileEntityTypeInit.VAULT_CHEST.get());
 	}
+	
+	@Override
+	public ItemStack getStackInSlot(int index) {
+		// TODO Auto-generated method stub
+		return this.chestContents.get(index);
+		//return super.getStackInSlot(index);
+	}
+	
+	public void setContents (int index, ItemStack stack) {
+		// TODO Auto-generated method stub
+		this.chestContents.add(index, stack);
+	}
+
 	
 	@Override
 	public int getSizeInventory() {

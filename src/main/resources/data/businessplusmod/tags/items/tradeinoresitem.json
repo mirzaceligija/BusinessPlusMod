@@ -1,0 +1,33 @@
+{
+  "replace":false,
+  "values": [
+      "minecraft:charcoal",
+      "minecraft:coal",
+      "minecraft:iron_ingot",
+      "minecraft:gold_ingot",
+      "minecraft:diamond",
+      "minecraft:lapis_lazuli",
+      "minecraft:emerald",
+      "minecraft:netherite_ingot",
+      "minecraft:quartz",
+      "minecraft:redstone",
+      "minecraft:glowstone_dust",
+      "minecraft:coal_ore",
+      "minecraft:iron_ore",
+      "minecraft:gold_ore",
+      "minecraft:diamond_ore",
+      "minecraft:lapis_ore",
+      "minecraft:emerald_ore",
+      "minecraft:nether_quartz_ore",
+      "minecraft:redstone_ore",
+      "minecraft:coal_block",
+      "minecraft:iron_block",
+      "minecraft:gold_block",
+      "minecraft:diamond_block",
+      "minecraft:lapis_block",
+      "minecraft:emerald_block",
+      "minecraft:quartz_block",
+      "minecraft:redstone_block",
+      "minecraft:glowstone"
+  ]
+}

@@ -7,9 +7,11 @@ import com.iamanim0.businessplusmod.core.init.BlockInit;
 import com.iamanim0.businessplusmod.core.init.ContainerTypeInit;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.container.ClickType;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IWorldPosCallable;
@@ -74,6 +76,27 @@ public class VaultChestContainer extends Container {
 	public boolean canInteractWith(PlayerEntity playerIn) {
 		// TODO Auto-generated method stub
 		return isWithinUsableDistance(canInteractWithCallable, playerIn, BlockInit.VAULT_CHEST.get());
+	}
+	
+	@Override
+	public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, PlayerEntity player) {
+		// TODO Auto-generated method stub
+		try {
+			if(slotId>=36 && slotId<=71 || slotId == -999) {
+				return super.slotClick(slotId, dragType, clickTypeIn, player);
+			} 
+			
+            System.out.println(slotId + " " + dragType + " " + clickTypeIn);
+            
+            player.addItemStackToInventory(tileEntity.getStackInSlot(slotId));
+            this.tileEntity.setContents(slotId, tileEntity.getStackInSlot(slotId));
+            return super.slotClick(slotId, dragType, clickTypeIn, player);
+            //return super.slotClick(slotId, dragType, clickTypeIn, player);
+		} catch (Exception exception) {
+            System.out.println("CRASH IN VENDING CONTAINER- slotid:" + slotId + " dragType:" + dragType + " clickType:" + clickTypeIn + " player:" + player);
+            return ItemStack.EMPTY;
+        }
+		//return super.slotClick(slotId, dragType, clickTypeIn, player);
 	}
 	
 	@Override
