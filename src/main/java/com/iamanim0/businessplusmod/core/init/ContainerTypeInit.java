@@ -5,8 +5,8 @@ import com.iamanim0.businessplusmod.common.containers.VaultChestContainer;
 import com.iamanim0.businessplusmod.common.containers.WalletContainer;
 import com.iamanim0.businessplusmod.common.containers.AtmContainer;
 import com.iamanim0.businessplusmod.common.containers.MarketContainer;
+import com.iamanim0.businessplusmod.common.containers.StoreContainer;
 import com.iamanim0.businessplusmod.common.containers.TradeInContainer;
-import com.iamanim0.businessplusmod.common.containers.TradeInOreContainer;
 
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.fml.RegistryObject;
@@ -27,12 +27,11 @@ public class ContainerTypeInit {
 	public static final RegistryObject<ContainerType<AtmContainer>> ATM = 
 			CONTAINER_TYPES.register("atm", () -> IForgeContainerType.create(AtmContainer::new));
 
-	
 	public static final RegistryObject<ContainerType<MarketContainer>> MARKET = 
 			CONTAINER_TYPES.register("market", () -> IForgeContainerType.create(MarketContainer::new));
-
-	public static final RegistryObject<ContainerType<TradeInOreContainer>> TRADEIN_ORE = 
-			CONTAINER_TYPES.register("tradein_ore", () -> IForgeContainerType.create(TradeInOreContainer::new));
+	
+	public static final RegistryObject<ContainerType<StoreContainer>> STORE = 
+			CONTAINER_TYPES.register("store", () -> IForgeContainerType.create(StoreContainer::new));
 	
 	public static final RegistryObject<ContainerType<TradeInContainer>> TRADEIN = 
 			CONTAINER_TYPES.register("tradein", () -> IForgeContainerType.create(TradeInContainer::new));

@@ -2,7 +2,7 @@ package com.iamanim0.businessplusmod.core.init;
 
 import com.iamanim0.businessplusmod.BusinessPlusMod;
 import com.iamanim0.businessplusmod.common.tiles.MarketTileEntity;
-import com.iamanim0.businessplusmod.common.tiles.TradeInOreTileEntity;
+import com.iamanim0.businessplusmod.common.tiles.StoreTileEntity;
 import com.iamanim0.businessplusmod.common.tiles.TradeInTileEntity;
 import com.iamanim0.businessplusmod.common.tiles.AtmTileEntity;
 import com.iamanim0.businessplusmod.common.tiles.VaultChestTileEntity;
@@ -25,10 +25,14 @@ public class TileEntityTypeInit {
 	public static final RegistryObject<TileEntityType<MarketTileEntity>> MARKET = TILE_ENTITY_TYPES.register("market", 
 			() -> TileEntityType.Builder.create(MarketTileEntity::new, BlockInit.MARKET.get()).build(null));
 	
-	public static final RegistryObject<TileEntityType<TradeInOreTileEntity>> TRADEIN_ORE = TILE_ENTITY_TYPES.register("tradein_ore", 
-			() -> TileEntityType.Builder.create(TradeInOreTileEntity::new, BlockInit.TRADEIN_ORE.get()).build(null));
+	// == STORES == //
+	public static final RegistryObject<TileEntityType<StoreTileEntity>> STORE_MINER = TILE_ENTITY_TYPES.register("store_miner", 
+			() -> TileEntityType.Builder.create(StoreTileEntity::new, BlockInit.STORE_MINER.get()).build(null));
 	
-	//TRADEIN
+	public static final RegistryObject<TileEntityType<StoreTileEntity>> STORE_FARMER = TILE_ENTITY_TYPES.register("store_farmer", 
+			() -> TileEntityType.Builder.create(StoreTileEntity::new, BlockInit.STORE_FARMER.get()).build(null));
+	
+	// == TRADEIN == //
 	public static final RegistryObject<TileEntityType<TradeInTileEntity>> TRADEIN_MINER_40 = TILE_ENTITY_TYPES.register("tradein_miner_40", 
 			() -> TileEntityType.Builder.create(TradeInTileEntity::new, BlockInit.TRADEIN_MINER_40.get()).build(null));
 	

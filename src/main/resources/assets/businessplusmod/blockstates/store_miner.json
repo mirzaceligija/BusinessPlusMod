@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "businessplusmod:block/store_miner", "y": 180 },
+    "facing=south": { "model": "businessplusmod:block/store_miner" },
+    "facing=west":  { "model": "businessplusmod:block/store_miner", "y": 90 },
+    "facing=east":  { "model": "businessplusmod:block/store_miner", "y": 270 }
+  }
+}

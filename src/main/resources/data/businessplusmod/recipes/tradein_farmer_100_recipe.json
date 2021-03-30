@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#O#",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:quartz_block"
+        },
+        "O": {
+            "item": "businessplusmod:farmer_licence_item"
+        }
+    },
+    "result": {
+        "item": "businessplusmod:tradein_farmer_100",
+        "count": 1
+    }
+}

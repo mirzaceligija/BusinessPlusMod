@@ -12,10 +12,18 @@ import net.minecraft.world.IBlockReader;
 
 public class MoneyPileBlock extends Block {
 	
-	private static final VoxelShape PARTIAL1 = Block.makeCuboidShape(0, 0, 0, 16, 3, 16);
-	private static final VoxelShape PARTIAL2 = Block.makeCuboidShape(1, 3, 1, 15, 14, 15);
+	private static final VoxelShape PARTIAL1 = Block.makeCuboidShape(14, 1, 14, 16, 2, 16);
+	private static final VoxelShape PARTIAL2 = Block.makeCuboidShape(14, 0, 0, 16, 1, 16);
+	private static final VoxelShape PARTIAL3 = Block.makeCuboidShape(14, 1, 0, 16, 2, 2);
+	private static final VoxelShape PARTIAL4 = Block.makeCuboidShape(7, 0, 0, 9, 2, 16);
+	private static final VoxelShape PARTIAL5 = Block.makeCuboidShape(0, 2, 0, 16, 3, 16);
+	private static final VoxelShape PARTIAL6 = Block.makeCuboidShape(0, 1, 0, 2, 2, 2);
+	private static final VoxelShape PARTIAL7 = Block.makeCuboidShape(0, 1, 14, 2, 2, 16);
+	private static final VoxelShape PARTIAL8 = Block.makeCuboidShape(0, 0, 0, 2, 1, 16);
+	private static final VoxelShape PARTIAL9 =Block.makeCuboidShape(1, 3, 1, 15, 16, 15);
 	
-	private static VoxelShape COMBINED_SHAPE = VoxelShapes.or(PARTIAL1, PARTIAL2);
+	
+	private static VoxelShape COMBINED_SHAPE = VoxelShapes.or(PARTIAL1, PARTIAL2, PARTIAL3, PARTIAL4, PARTIAL5, PARTIAL6, PARTIAL7, PARTIAL8, PARTIAL9);
 	@SuppressWarnings("unused")
 	private static VoxelShape EMPTY_SPACE = VoxelShapes.combineAndSimplify(VoxelShapes.fullCube(), COMBINED_SHAPE, IBooleanFunction.ONLY_FIRST);
 

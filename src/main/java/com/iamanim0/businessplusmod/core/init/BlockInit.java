@@ -2,10 +2,11 @@ package com.iamanim0.businessplusmod.core.init;
 
 import com.iamanim0.businessplusmod.BusinessPlusMod;
 import com.iamanim0.businessplusmod.common.blocks.AtmBlock;
+import com.iamanim0.businessplusmod.common.blocks.BankBlock;
 import com.iamanim0.businessplusmod.common.blocks.MarketBlock;
 import com.iamanim0.businessplusmod.common.blocks.MoneyPileBlock;
+import com.iamanim0.businessplusmod.common.blocks.StoreBlock;
 import com.iamanim0.businessplusmod.common.blocks.TradeInBlock;
-import com.iamanim0.businessplusmod.common.blocks.TradeInOreBlock;
 import com.iamanim0.businessplusmod.common.blocks.VaultChestBlock;
 
 import net.minecraft.block.AbstractBlock;
@@ -42,24 +43,27 @@ public class BlockInit {
 	                .sound(SoundType.METAL)
 	                .hardnessAndResistance(2.0f)));
 	
+	public static final RegistryObject<Block> BANK  = BLOCKS.register("bank", 
+			() -> new BankBlock(AbstractBlock.Properties.create(Material.IRON)
+	                .sound(SoundType.METAL)
+	                .hardnessAndResistance(2.0f)));
+	
 	public static final RegistryObject<Block> MARKET  = BLOCKS.register("market", 
 			() -> new MarketBlock(AbstractBlock.Properties.create(Material.IRON)
 	                .sound(SoundType.METAL)
 	                .hardnessAndResistance(2.0f)));
 	
-	public static final RegistryObject<Block> TRADEIN_ORE  = BLOCKS.register("tradein_ore", 
-			() -> new TradeInOreBlock(AbstractBlock.Properties.create(Material.IRON)
-	                .sound(SoundType.METAL)
-	                .hardnessAndResistance(2.0f)));
+	// === STORE BLOCKS === //
 	
+	public static final RegistryObject<Block> STORE_MINER  = BLOCKS.register("store_miner", 
+			() -> new StoreBlock(AbstractBlock.Properties.create(Material.IRON)
+	                .hardnessAndResistance(2.0f), "miner"));
 	
-	// === TRADE MACHINES === //
+	public static final RegistryObject<Block> STORE_FARMER  = BLOCKS.register("store_farmer", 
+			() -> new StoreBlock(AbstractBlock.Properties.create(Material.IRON)
+	                .hardnessAndResistance(2.0f), "farmer"));
 	
-	/*
-	public static final RegistryObject<Block> TRADEIN = BLOCKS.register("tradein", 
-			() -> new TradeInBlock(AbstractBlock.Properties.create(Material.IRON)
-	                .hardnessAndResistance(2.0f), 40, "miner"));
-	                */
+	// === TRADE IN BLOCKS === //
 	
 	public static final RegistryObject<Block> TRADEIN_MINER_40  = BLOCKS.register("tradein_miner_40", 
 			() -> new TradeInBlock(AbstractBlock.Properties.create(Material.IRON)

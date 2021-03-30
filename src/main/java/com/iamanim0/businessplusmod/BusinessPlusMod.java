@@ -157,6 +157,10 @@ public class BusinessPlusMod
 			items.add(ItemInit.MINER_LICENCE_ITEM.get().getDefaultInstance());
 			items.add(ItemInit.FARMER_LICENCE_ITEM.get().getDefaultInstance());
 			
+			//Stores
+			items.add(ItemInit.STORE_MINER.get().getDefaultInstance());
+			items.add(ItemInit.STORE_FARMER.get().getDefaultInstance());
+			
 			//Machines
 			items.add(ItemInit.TRADEIN_MINER_40.get().getDefaultInstance());
 			items.add(ItemInit.TRADEIN_MINER_100.get().getDefaultInstance());
@@ -164,13 +168,13 @@ public class BusinessPlusMod
 			items.add(ItemInit.TRADEIN_FARMER_100.get().getDefaultInstance());
 			
 			//Other
+			//items.add(ItemInit.BANK.get().getDefaultInstance());
 			items.add(ItemInit.CREDIT_CARD_ITEM.get().getDefaultInstance());
 			//items.add(ItemInit.LICENCE_ITEM.get().getDefaultInstance());
 			//items.add(ItemInit.VAULT_CHEST_BLOCK.get().getDefaultInstance());
 			items.add(ItemInit.MONEY_PILE_BLOCK.get().getDefaultInstance());
 			items.add(ItemInit.ATM.get().getDefaultInstance());
-			items.add(ItemInit.MARKET.get().getDefaultInstance());
-			items.add(ItemInit.TRADEIN_ORE.get().getDefaultInstance());
+			// NEPOTREBNO items.add(ItemInit.MARKET.get().getDefaultInstance());
 			//super.fill(items);
 		}
     }

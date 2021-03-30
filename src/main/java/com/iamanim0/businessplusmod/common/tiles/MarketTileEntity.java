@@ -126,7 +126,7 @@ public class MarketTileEntity extends TileEntity implements ITickableTileEntity,
 	    	if(this.inputContents.getStackInSlot(0).getItem().isIn(ItemTags.getCollection().get(MONEY_TAG))) {
 	    		try {
 	    			this.inputContents.inputMoney(this.inputContents.getStackInSlot(0));
-	    			this.currentMoney = this.inputContents.getMoneyCount();
+	    			this.currentMoney += this.inputContents.getMoneyCount();
 	    		} catch  (Exception exception) {
 	    			System.out.println("NE MERE MEDA" + exception);
 	    		}

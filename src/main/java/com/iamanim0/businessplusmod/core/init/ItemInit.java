@@ -50,14 +50,16 @@ public class ItemInit {
 
     
 	/*BLOCK ITEMS*/
-    
+    public static final RegistryObject<BlockItem> BANK = ITEMS.register("bank", () -> new BlockItem(BlockInit.BANK.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
 	public static final RegistryObject<BlockItem> ATM = ITEMS.register("atm", () -> new BlockItem(BlockInit.ATM_BLOCK.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
 	public static final RegistryObject<BlockItem> VAULT_CHEST_BLOCK = ITEMS.register("vault_chest", () -> new BlockItem(BlockInit.VAULT_CHEST.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
 	public static final RegistryObject<BlockItem> MONEY_PILE_BLOCK = ITEMS.register("money_pile", () -> new BlockItem(BlockInit.MONEY_PILE.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
 	public static final RegistryObject<BlockItem> MARKET = ITEMS.register("market", () -> new BlockItem(BlockInit.MARKET.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
 
-	public static final RegistryObject<BlockItem> TRADEIN_ORE = ITEMS.register("tradein_ore", () -> new BlockItem(BlockInit.TRADEIN_ORE.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
-
+	// === STORES === //
+	public static final RegistryObject<BlockItem> STORE_MINER = ITEMS.register("store_miner", () -> new BlockItem(BlockInit.STORE_MINER.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
+	public static final RegistryObject<BlockItem> STORE_FARMER = ITEMS.register("store_farmer", () -> new BlockItem(BlockInit.STORE_FARMER.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
+	
 	// === MACHINES === //
 	public static final RegistryObject<BlockItem> TRADEIN_MINER_40 = ITEMS.register("tradein_miner_40", () -> new BlockItem(BlockInit.TRADEIN_MINER_40.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
 	public static final RegistryObject<BlockItem> TRADEIN_MINER_100 = ITEMS.register("tradein_miner_100", () -> new BlockItem(BlockInit.TRADEIN_MINER_100.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));

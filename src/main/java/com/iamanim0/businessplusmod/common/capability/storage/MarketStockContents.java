@@ -9,6 +9,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 
+@SuppressWarnings("unused")
 public class MarketStockContents implements IInventory {
 	
     private final MarketStackHandler vendingComponentContents;

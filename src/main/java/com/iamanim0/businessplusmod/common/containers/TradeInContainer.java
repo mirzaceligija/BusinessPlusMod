@@ -5,9 +5,6 @@ import java.util.Objects;
 import com.iamanim0.businessplusmod.common.capability.provider.TradeInStateData;
 import com.iamanim0.businessplusmod.common.capability.storage.TradeInContents;
 import com.iamanim0.businessplusmod.common.capability.storage.TradeInStockContents;
-import com.iamanim0.businessplusmod.common.containers.TradeInOreContainer.InputSlot;
-import com.iamanim0.businessplusmod.common.containers.TradeInOreContainer.StockSlot;
-import com.iamanim0.businessplusmod.common.tiles.TradeInOreTileEntity;
 import com.iamanim0.businessplusmod.common.tiles.TradeInTileEntity;
 import com.iamanim0.businessplusmod.core.init.ContainerTypeInit;
 
@@ -16,7 +13,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.ClickType;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
@@ -28,15 +24,18 @@ public class TradeInContainer extends Container{
 	public final TradeInTileEntity tileEntity;
 	private TradeInStockContents stockContents;
     private TradeInContents inputContents;
-    private TradeInContents outputContents;
-    private World world;
+    @SuppressWarnings("unused")
+	private TradeInContents outputContents;
+    @SuppressWarnings("unused")
+	private World world;
     
     // Slot Calculations
     private static final int HOTBAR_SLOT_COUNT = 9;
     private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
     private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
     private static final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
-    private static final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
+    @SuppressWarnings("unused")
+	private static final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
     
     public static final int STOCK_ROW_COUNT = TradeInTileEntity.STOCK_ROW_COUNT;
     public static final int STOCK_COLUMN_COUNT = TradeInTileEntity.STOCK_COLUMN_COUNT;
@@ -51,7 +50,8 @@ public class TradeInContainer extends Container{
     private static final int PLAYER_INVENTORY_FIRST_SLOT_INDEX = HOTBAR_FIRST_SLOT_INDEX + HOTBAR_SLOT_COUNT;
     private static final int FIRST_STOCK_SLOT_INDEX = PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOT_COUNT;
     private static final int FIRST_INPUT_SLOT_INDEX = FIRST_STOCK_SLOT_INDEX + STOCK_SLOT_COUNT;
-    private static final int FIRST_OUTPUT_SLOT_INDEX = FIRST_INPUT_SLOT_INDEX + INPUT_SLOTS_COUNT;
+    @SuppressWarnings("unused")
+	private static final int FIRST_OUTPUT_SLOT_INDEX = FIRST_INPUT_SLOT_INDEX + INPUT_SLOTS_COUNT;
 	
     // GUI pos of inventory grid
     public static final int PLAYER_INVENTORY_XPOS = 49;
@@ -65,7 +65,8 @@ public class TradeInContainer extends Container{
     public static final int INPUT_SLOTS_XPOS = 225;
     public static final int INPUT_SLOTS_YPOS = 173;
 	
-    private TradeInStateData tradeInStateData;
+    @SuppressWarnings("unused")
+	private TradeInStateData tradeInStateData;
 
     public TradeInContainer(int windowID, PlayerInventory playerInventory, TradeInStockContents stockContents,
 			TradeInContents inputContents, TradeInContents outputContents, TradeInTileEntity te,

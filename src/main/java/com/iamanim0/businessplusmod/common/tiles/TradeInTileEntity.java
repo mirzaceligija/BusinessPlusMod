@@ -36,9 +36,11 @@ public class TradeInTileEntity  extends TileEntity implements ITickableTileEntit
 	private static final ResourceLocation MINER_TAG = new ResourceLocation(BusinessPlusMod.MOD_ID, "tradeinoresitem");
 	private static final ResourceLocation FARMER_TAG = new ResourceLocation(BusinessPlusMod.MOD_ID, "farmeritem");
 	
-	   private static final String[] CATEGORIES = {
-	    		"miner", "farmer"
-	    };
+	/*
+   private static final String[] CATEGORIES = {
+    		"miner", "farmer"
+    };
+    */
 	
 	private final int SELLING_RATE;
 	private final String CATEGORY;
@@ -47,7 +49,7 @@ public class TradeInTileEntity  extends TileEntity implements ITickableTileEntit
     public static final int STOCK_COLUMN_COUNT = 12;
     public static final int STOCK_SLOT_COUNT = STOCK_ROW_COUNT * STOCK_COLUMN_COUNT;
     public static final int INPUT_SLOTS_COUNT = 1;
-    public static final int OUTPUT_SLOTS_COUNT = 12;
+    public static final int OUTPUT_SLOTS_COUNT = 36;
     public static final int TOTAL_SLOTS_COUNT = STOCK_SLOT_COUNT + INPUT_SLOTS_COUNT + OUTPUT_SLOTS_COUNT;
     
     private TradeInStockContents stockContents;
@@ -64,7 +66,6 @@ public class TradeInTileEntity  extends TileEntity implements ITickableTileEntit
 		this.CATEGORY = "invalid";
 	}
 	
-	private String ctor = "TileEntityTypeInit.TRADEIN_MINER_100";
 	
 	public TradeInTileEntity(TileEntityType<?> tileEntityTypeIn, int sr, String cat) {
 		// TODO Auto-generated constructor stub
@@ -96,12 +97,12 @@ public class TradeInTileEntity  extends TileEntity implements ITickableTileEntit
 	    	return;
 	    } else {
 	    	if(this.CATEGORY == "miner" && this.inputContents.getStackInSlot(0).getItem().isIn(ItemTags.getCollection().get(MINER_TAG))) {
-	    		this.inputContents.inputMoney(this.inputContents.getStackInSlot(0), this.SELLING_RATE);
+	    		this.inputContents.inputItemIn(this.inputContents.getStackInSlot(0), this.SELLING_RATE);
 	    		this.currentMoney = this.inputContents.getMoneyCount();
 	    		System.out.println("TRENUTNO MONEY IN TILE ENTITY --> " + this.currentMoney);
 	    	} else if (this.CATEGORY == "farmer" && this.inputContents.getStackInSlot(0).getItem().isIn(ItemTags.getCollection().get(FARMER_TAG))) {
 	    		System.out.println("TICK REACTION");
-	    		this.inputContents.inputMoney(this.inputContents.getStackInSlot(0), this.SELLING_RATE);
+	    		this.inputContents.inputItemIn(this.inputContents.getStackInSlot(0), this.SELLING_RATE);
 	    		this.currentMoney = this.inputContents.getMoneyCount();
 	    		System.out.println("TRENUTNO MONEY IN TILE ENTITY --> " + this.currentMoney);
 	    	}
@@ -255,8 +256,53 @@ public class TradeInTileEntity  extends TileEntity implements ITickableTileEntit
     }
 	
 	public void generateStockContentsFARMER() {	
-		stockContents.setInventorySlotContents(0, new ItemStack(Items.WHEAT.getItem(), 1));
-        stockContents.setInventorySlotContents(1, new ItemStack(Items.WHEAT_SEEDS.getItem(), 1));
+		stockContents.setInventorySlotContents(0, new ItemStack(Items.CHICKEN.getItem(), 1));
+        stockContents.setInventorySlotContents(1, new ItemStack(Items.COOKED_CHICKEN.getItem(), 1));
+        stockContents.setInventorySlotContents(2, new ItemStack(Items.PORKCHOP.getItem(), 1));
+        stockContents.setInventorySlotContents(3, new ItemStack(Items.COOKED_PORKCHOP.getItem(), 1));
+        stockContents.setInventorySlotContents(4, new ItemStack(Items.BEEF.getItem(), 1));
+        stockContents.setInventorySlotContents(5, new ItemStack(Items.COOKED_BEEF.getItem(), 1));
+        stockContents.setInventorySlotContents(6, new ItemStack(Items.COD.getItem(), 1));
+        stockContents.setInventorySlotContents(7, new ItemStack(Items.SALMON.getItem(), 1));
+        stockContents.setInventorySlotContents(8, new ItemStack(Items.TROPICAL_FISH.getItem(), 1));
+        stockContents.setInventorySlotContents(9, new ItemStack(Items.PUFFERFISH.getItem(), 1));
+        stockContents.setInventorySlotContents(10, new ItemStack(Items.COOKED_COD.getItem(), 1));
+        stockContents.setInventorySlotContents(11, new ItemStack(Items.COOKED_SALMON.getItem(), 1));
+        stockContents.setInventorySlotContents(12, new ItemStack(Items.POTATO.getItem(), 1));
+        stockContents.setInventorySlotContents(13, new ItemStack(Items.BAKED_POTATO.getItem(), 1));
+        stockContents.setInventorySlotContents(14, new ItemStack(Items.POISONOUS_POTATO.getItem(), 1));
+        stockContents.setInventorySlotContents(15, new ItemStack(Items.CARROT.getItem(), 1));
+        stockContents.setInventorySlotContents(16, new ItemStack(Items.GOLDEN_CARROT.getItem(), 1));
+        stockContents.setInventorySlotContents(17, new ItemStack(Items.APPLE.getItem(), 1));
+        stockContents.setInventorySlotContents(18, new ItemStack(Items.GOLDEN_APPLE.getItem(), 1));
+        stockContents.setInventorySlotContents(19, new ItemStack(Items.MELON_SLICE.getItem(), 1));
+        stockContents.setInventorySlotContents(20, new ItemStack(Items.MELON.getItem(), 1));
+        stockContents.setInventorySlotContents(21, new ItemStack(Items.PUMPKIN.getItem(), 1));
+        stockContents.setInventorySlotContents(22, new ItemStack(Items.BROWN_MUSHROOM.getItem(), 1));
+        stockContents.setInventorySlotContents(23, new ItemStack(Items.RED_MUSHROOM.getItem(), 1));
+        stockContents.setInventorySlotContents(24, new ItemStack(Items.MUSHROOM_STEW.getItem(), 1));
+        stockContents.setInventorySlotContents(25, new ItemStack(Items.BREAD.getItem(), 1));
+        stockContents.setInventorySlotContents(26, new ItemStack(Items.COOKIE.getItem(), 1));
+        stockContents.setInventorySlotContents(27, new ItemStack(Items.PUMPKIN_PIE.getItem(), 1));
+        stockContents.setInventorySlotContents(28, new ItemStack(Items.CAKE.getItem(), 1));
+        stockContents.setInventorySlotContents(29, new ItemStack(Items.WHEAT_SEEDS.getItem(), 1));
+        stockContents.setInventorySlotContents(30, new ItemStack(Items.PUMPKIN_SEEDS.getItem(), 1));
+        stockContents.setInventorySlotContents(31, new ItemStack(Items.MELON_SEEDS.getItem(), 1));
+        stockContents.setInventorySlotContents(32, new ItemStack(Items.BEETROOT_SEEDS.getItem(), 1));
+        stockContents.setInventorySlotContents(33, new ItemStack(Items.COCOA_BEANS.getItem(), 1));
+        stockContents.setInventorySlotContents(34, new ItemStack(Items.WHEAT.getItem(), 1));
+        stockContents.setInventorySlotContents(35, new ItemStack(Items.SUGAR_CANE.getItem(), 1));
+        stockContents.setInventorySlotContents(36, new ItemStack(Items.SUGAR.getItem(), 1));
+        stockContents.setInventorySlotContents(37, new ItemStack(Items.EGG.getItem(), 1));
+        stockContents.setInventorySlotContents(38, new ItemStack(Items.MILK_BUCKET.getItem(), 1));
+        stockContents.setInventorySlotContents(39, new ItemStack(Items.HAY_BLOCK.getItem(), 1));
+        stockContents.setInventorySlotContents(40, new ItemStack(Items.GLISTERING_MELON_SLICE.getItem(), 1));
+        stockContents.setInventorySlotContents(41, new ItemStack(Items.RABBIT.getItem(), 1));
+        stockContents.setInventorySlotContents(42, new ItemStack(Items.COOKED_RABBIT.getItem(), 1));
+        stockContents.setInventorySlotContents(43, new ItemStack(Items.RABBIT_STEW.getItem(), 1));
+        stockContents.setInventorySlotContents(44, new ItemStack(Items.BEETROOT_SOUP.getItem(), 1));
+        stockContents.setInventorySlotContents(45, new ItemStack(Items.SWEET_BERRIES.getItem(), 1));
+        stockContents.setInventorySlotContents(46, new ItemStack(Items.HONEY_BOTTLE.getItem(), 1));
         
         for(int i=0; i < stockContents.getSizeInventory(); i++) {
         	stockContents.getStackInSlot(i).setDisplayName(new StringTextComponent(stockContents.getStackInSlot(i).getDisplayName().getString() +" - "+ (PriceList.getPriceForItemFARMER(stockContents.getStackInSlot(i), this.SELLING_RATE)/100.00) + "$"));

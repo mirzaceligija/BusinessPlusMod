@@ -7,11 +7,11 @@ import com.iamanim0.businessplusmod.common.items.MoneyItem;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.items.ItemStackHandler;
 
+@SuppressWarnings("unused")
 public class MarketContents implements IInventory {
 
 	private final ItemStackHandler vendingComponentContents;

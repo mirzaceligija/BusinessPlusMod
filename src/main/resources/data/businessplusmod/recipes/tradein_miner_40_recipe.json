@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#C#",
+        "#B#",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:quartz_block"
+        },
+        "C": {
+            "item": "minecraft:coal"
+        },
+        "B": {
+            "item": "businessplusmod:dollar500"
+        }
+    },
+    "result": {
+        "item": "businessplusmod:tradein_miner_40",
+        "count": 1
+    }
+}

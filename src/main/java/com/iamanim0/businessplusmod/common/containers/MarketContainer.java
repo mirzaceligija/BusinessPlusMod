@@ -3,14 +3,10 @@ package com.iamanim0.businessplusmod.common.containers;
 import java.util.Objects;
 
 import com.iamanim0.businessplusmod.common.capability.provider.MarketStateData;
-import com.iamanim0.businessplusmod.common.capability.provider.MarketStateData;
 import com.iamanim0.businessplusmod.common.capability.storage.MarketContents;
 import com.iamanim0.businessplusmod.common.capability.storage.MarketStockContents;
-import com.iamanim0.businessplusmod.common.containers.MarketContainer.InputSlot;
-import com.iamanim0.businessplusmod.common.items.MoneyItem;
 import com.iamanim0.businessplusmod.common.tiles.MarketTileEntity;
 import com.iamanim0.businessplusmod.core.init.ContainerTypeInit;
-import com.iamanim0.businessplusmod.core.init.ItemInit;
 import com.iamanim0.businessplusmod.core.util.PriceList;
 
 import net.minecraft.entity.player.PlayerEntity;
@@ -22,7 +18,6 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
@@ -39,7 +34,8 @@ public class MarketContainer extends Container {
     private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
     private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
     private static final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
-    private static final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
+    @SuppressWarnings("unused")
+	private static final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
     
     public static final int STOCK_ROW_COUNT = MarketTileEntity.STOCK_ROW_COUNT;
     public static final int STOCK_COLUMN_COUNT = MarketTileEntity.STOCK_COLUMN_COUNT;
@@ -54,7 +50,8 @@ public class MarketContainer extends Container {
     private static final int PLAYER_INVENTORY_FIRST_SLOT_INDEX = HOTBAR_FIRST_SLOT_INDEX + HOTBAR_SLOT_COUNT;
     private static final int FIRST_STOCK_SLOT_INDEX = PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOT_COUNT;
     private static final int FIRST_INPUT_SLOT_INDEX = FIRST_STOCK_SLOT_INDEX + STOCK_SLOT_COUNT;
-    private static final int FIRST_OUTPUT_SLOT_INDEX = FIRST_INPUT_SLOT_INDEX + INPUT_SLOTS_COUNT;
+    @SuppressWarnings("unused")
+	private static final int FIRST_OUTPUT_SLOT_INDEX = FIRST_INPUT_SLOT_INDEX + INPUT_SLOTS_COUNT;
 	
     // GUI pos of inventory grid
     public static final int PLAYER_INVENTORY_XPOS = 49;

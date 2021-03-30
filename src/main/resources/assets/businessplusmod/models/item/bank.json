@@ -1,5 +1,5 @@
 {
-  "parent": "businessplusmod:block/tradein_ore",
+  "parent": "businessplusmod:block/bank",
   "display": {
     "gui": {
       "rotation": [ 30, 225, 0 ],

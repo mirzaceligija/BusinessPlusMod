@@ -24,26 +24,26 @@
 	"item.businessplusmod.miner_licence_item": "Business Licence - Miner",
 	"item.businessplusmod.farmer_licence_item": "Business Licence - Farmer",
 	
-	"block.businessplusmod.tradein_miner_40": "Trade In - Ores 40%",
-	"block.businessplusmod.tradein_miner_100": "Trade In - Ores 100%",
-	"block.businessplusmod.tradein_farmer_40": "Trade In - Food 40%",
-	"block.businessplusmod.tradein_farmer_100": "Trade In - Food 100%",
+	"block.businessplusmod.store_miner": "Store - Ores",
+	"block.businessplusmod.store_farmer": "Store - Food",
 	
+	"block.businessplusmod.tradein_miner_40": "StartUp - Ores 40%",
+	"block.businessplusmod.tradein_miner_100": "Business - Ores 100%",
+	"block.businessplusmod.tradein_farmer_40": "StartUp - Food 40%",
+	"block.businessplusmod.tradein_farmer_100": "Business - Food 100%",
 	
-	
-	
-	"block.businessplusmod.tradein_ore": "Trade In - Ores",
+	"block.businessplusmod.bank": "Bank",
 	"block.businessplusmod.market": "Market",
 	"block.businessplusmod.atm": "ATM Machine",
 	"block.businessplusmod.vault_chest": "Vault Chest",
 	"block.businessplusmod.money_pile": "Money Pile",
 	
+	"container.store": "Store",
 	"container.tradein": "TradeIn",
 	
 	"container.vault_chest": "Vault Chest",
 	"container.wallet": "Wallet",
 	"container.market": "Market",
-	"container.tradein_ore": "TradeIn - Ores",
 	
 	"container.businessplusmod.atm_in": "ATM Input",
 	"container.businessplusmod.atm_out": "ATM Output",

@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "businessplusmod:block/store_farmer", "y":180 },
+    "facing=south": { "model": "businessplusmod:block/store_farmer"},
+    "facing=west":  { "model": "businessplusmod:block/store_farmer", "y": 90 },
+    "facing=east":  { "model": "businessplusmod:block/store_farmer", "y": 270 }
+  }
+}

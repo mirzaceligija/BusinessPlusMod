@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "BBB",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:leather"
+        },
+        "B": {
+            "item": "businessplusmod:dollar1"
+        }
+    },
+    "result": {
+        "item": "businessplusmod:wallet_item",
+        "count": 1
+    }
+}

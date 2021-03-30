@@ -1,7 +1,7 @@
 package com.iamanim0.businessplusmod.client.screens;
 
 import com.iamanim0.businessplusmod.BusinessPlusMod;
-import com.iamanim0.businessplusmod.common.containers.TradeInOreContainer;
+import com.iamanim0.businessplusmod.common.containers.TradeInContainer;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
@@ -10,13 +10,13 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
-public class TradeInBlockScreen extends ContainerScreen<TradeInOreContainer> {
+public class TradeInBlockScreen extends ContainerScreen<TradeInContainer> {
 	
-	private static final ResourceLocation TEXTURE = new ResourceLocation(BusinessPlusMod.MOD_ID, "textures/gui/minezone2.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(BusinessPlusMod.MOD_ID, "textures/gui/tradein_gui.png");
 	@SuppressWarnings("unused")
-	private TradeInOreContainer tradeInContainer;
+	private TradeInContainer tradeInContainer;
 
-	public TradeInBlockScreen(TradeInOreContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
+	public TradeInBlockScreen(TradeInContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
 		super(screenContainer, inv, titleIn);
 		// TODO Auto-generated constructor stub
 		this.tradeInContainer = screenContainer;

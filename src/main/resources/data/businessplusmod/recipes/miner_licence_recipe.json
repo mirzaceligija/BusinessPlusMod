@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#C"
+    ],
+    "key": {
+        "#": {
+            "item": "businessplusmod:dollar10000"
+        },
+        "C": {
+            "item": "minecraft:coal"
+        }
+    },
+    "result": {
+        "item": "businessplusmod:miner_licence_item",
+        "count": 1
+    }
+}

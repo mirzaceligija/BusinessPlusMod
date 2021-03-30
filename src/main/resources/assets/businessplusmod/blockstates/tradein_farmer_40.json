@@ -1,5 +1,8 @@
 {
-	"variants": {
-		"": { "model": "businessplusmod:block/tradein_farmer_40" }
-	}
+  "variants": {
+    "facing=north": { "model": "businessplusmod:block/tradein_farmer_40" },
+    "facing=south": { "model": "businessplusmod:block/tradein_farmer_40", "y": 180 },
+    "facing=west":  { "model": "businessplusmod:block/tradein_farmer_40", "y": 270 },
+    "facing=east":  { "model": "businessplusmod:block/tradein_farmer_40", "y": 90 }
+  }
 }

@@ -4,6 +4,7 @@ import java.util.function.Predicate;
 
 import com.iamanim0.businessplusmod.BusinessPlusMod;
 import com.iamanim0.businessplusmod.common.capability.storage.TradeInContents.Notify;
+import com.iamanim0.businessplusmod.common.items.MoneyItem;
 import com.iamanim0.businessplusmod.core.util.PriceList;
 
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,6 +15,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.items.ItemStackHandler;
 
+@SuppressWarnings("unused")
 public class TradeInContents implements IInventory {
 
 	private final ItemStackHandler tradeInComponentContents;
@@ -71,7 +73,7 @@ public class TradeInContents implements IInventory {
     	this.moneyIn = this.getMoneyCount() - price;
     }
     
-    public void inputMoney(ItemStack stack, int rate) {
+    public void inputItemIn(ItemStack stack, int rate) {
     	removeStackFromSlot(0);
     	if(stack.getItem().isIn(ItemTags.getCollection().get(MINER_TAG))) {
     		System.out.println("CIJENA ZA ITEM -->" + PriceList.getPriceForItemMINER(stack, rate) * stack.getCount());
@@ -84,6 +86,13 @@ public class TradeInContents implements IInventory {
     		System.out.println("MONEY IN-->" + this.moneyIn);
     	} else
     		this.moneyIn = 0;
+    }
+    
+    public void inputMoney(ItemStack stack) {
+    	removeStackFromSlot(0);
+    	MoneyItem money = (MoneyItem) stack.getItem();
+    	this.moneyIn = MoneyItem.getCoinValue(money) * stack.getCount();
+    	System.out.println("MONEY IN-->" + this.moneyIn);
     }
 
     // ----- Setters and Getters -----

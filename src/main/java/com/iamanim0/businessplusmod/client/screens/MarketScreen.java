@@ -12,7 +12,7 @@ import net.minecraft.util.text.ITextComponent;
 
 public class MarketScreen extends ContainerScreen<MarketContainer> {
 	
-	private static final ResourceLocation TEXTURE = new ResourceLocation(BusinessPlusMod.MOD_ID, "textures/gui/marketplace.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(BusinessPlusMod.MOD_ID, "textures/gui/market_gui.png");
 	@SuppressWarnings("unused")
 	private MarketContainer marketContainer;
 
