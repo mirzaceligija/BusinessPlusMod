@@ -45,6 +45,7 @@ public class TradeInStackHandler extends ItemStackHandler {
     {
         return stacks.size();
     }
+    
 
     @Override
     @Nonnull

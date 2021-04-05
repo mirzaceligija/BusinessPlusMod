@@ -2,6 +2,9 @@ package com.iamanim0.businessplusmod.common.containers;
 
 import java.util.Objects;
 
+import javax.annotation.Nonnull;
+
+import com.iamanim0.businessplusmod.BusinessPlusMod;
 import com.iamanim0.businessplusmod.common.capability.provider.TradeInStateData;
 import com.iamanim0.businessplusmod.common.capability.storage.TradeInContents;
 import com.iamanim0.businessplusmod.common.capability.storage.TradeInStockContents;
@@ -17,11 +20,17 @@ import net.minecraft.inventory.container.ClickType;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
+@SuppressWarnings("unused")
 public class StoreContainer extends Container {
+	
+	private static final ResourceLocation MONEY_TAG = new ResourceLocation(BusinessPlusMod.MOD_ID, "moneytagitem");
 	
 	public final StoreTileEntity tileEntity;
 	private TradeInStockContents stockContents;
@@ -172,20 +181,24 @@ public class StoreContainer extends Container {
     @Override
 	public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, PlayerEntity player) {
 		// TODO Auto-generated method stub
-		
-		
-		if(clickTypeIn == ClickType.PICKUP_ALL || clickTypeIn == ClickType.QUICK_MOVE)
-			return ItemStack.EMPTY;
+    	
+    	if(clickTypeIn == ClickType.PICKUP_ALL)
+    		return ItemStack.EMPTY;
 		
 		try {
 			System.out.println(slotId + " " + dragType + " " + clickTypeIn);
 			if ((slotId >= 0 && //PLAYER INVENTORY
-                    slotId < 36 + 1) || (slotId == -999)) {
+                    slotId < 36) || (slotId == -999)) {
+				if (clickTypeIn == ClickType.QUICK_MOVE)
+					return playerInventorySlotClick(slotId, dragType, clickTypeIn, player);
+				
                 return super.slotClick(slotId, dragType, clickTypeIn, player);
             } else if (slotId >= 37 && // STOCK INVENTORY
                     slotId < 120 + 1) {
                 return stockSlotClick(slotId, dragType, clickTypeIn, player);
             } else if (slotId == 36) {
+            	if (clickTypeIn == ClickType.QUICK_MOVE)
+					return inputInventorySlotClick(slotId, dragType, clickTypeIn, player);
             	return super.slotClick(slotId, dragType, clickTypeIn, player);
             } else {
             	return ItemStack.EMPTY;
@@ -196,7 +209,52 @@ public class StoreContainer extends Container {
         }
 	}
 	
-    private ItemStack stockSlotClick(int slotId, int dragType, ClickType clickTypeIn, PlayerEntity player) {  
+    private ItemStack inputInventorySlotClick(int slotId, int dragType, ClickType clickTypeIn, PlayerEntity player) {
+		// TODO Auto-generated method stub
+    	ItemStack sourceStack = inputContents.getStackInSlot(0);
+    	
+    	if (!mergeItemStack(sourceStack, 0, VANILLA_SLOT_COUNT, false)) {
+	        return ItemStack.EMPTY;  // EMPTY_ITEM
+	      } else
+	    	  mergeItemStack(sourceStack, 0, VANILLA_SLOT_COUNT, false);
+    	
+    	return ItemStack.EMPTY;
+	}
+
+	private ItemStack playerInventorySlotClick(int slotId, int dragType, ClickType clickTypeIn, PlayerEntity player) {
+		// TODO Auto-generated method stub    	
+    	ItemStack sourceStack = player.inventory.getStackInSlot(slotId);
+    	
+    	if(sourceStack.getItem().isIn(ItemTags.getCollection().get(MONEY_TAG))) {
+    		
+    		if(!this.inputContents.isEmpty())
+    			return ItemStack.EMPTY;
+    		
+    		player.inventory.setInventorySlotContents(slotId, ItemStack.EMPTY);
+        	this.inputContents.setInventorySlotContents(0, sourceStack);
+        	return ItemStack.EMPTY;
+		} else {
+			
+			if (slotId >= 0 && slotId < 9) { //HOTBAR CLICKED
+				
+		      if (!mergeItemStack(sourceStack, 9, VANILLA_SLOT_COUNT, false)) {
+		        return ItemStack.EMPTY;  // EMPTY_ITEM
+		      } else
+		    	  mergeItemStack(sourceStack, 9, VANILLA_SLOT_COUNT, false);
+		    } else if (slotId >= 9 && slotId < 37) { //INVENTORY CLICKED
+		      if (!mergeItemStack(sourceStack, 0, 9, false)){
+		        return ItemStack.EMPTY;  // EMPTY_ITEM
+		      } else
+		    	  mergeItemStack(sourceStack, 0, 9, false);
+		    } else {
+		      return ItemStack.EMPTY;
+		    }
+			return ItemStack.EMPTY;
+		}
+	}
+
+	private ItemStack stockSlotClick(int slotId, int dragType, ClickType clickTypeIn, PlayerEntity player) {  
+    	
     	int itemPrice = 0;
     	
     	if(this.tileEntity.getCategory() == "farmer")
@@ -204,55 +262,36 @@ public class StoreContainer extends Container {
     	else if (this.tileEntity.getCategory() == "miner")
     		itemPrice = PriceList.getPriceForItemMINER(this.tileEntity.getStockContents(slotId), 100);
     	
-    	System.out.println("TRENUTNO MONEY IN CONTAINER -->" + this.tileEntity.currentMoney);
-    	System.out.println("TRENUTNO MONEY ITEM PRICE CONTAINER -->" + itemPrice);
-    	
-    	if(clickTypeIn == ClickType.PICKUP) {	
+    	if(clickTypeIn == ClickType.PICKUP || clickTypeIn == ClickType.QUICK_MOVE) {
+    		int maxItemCanBuy = 1;
     		
-    		if(this.tileEntity.currentMoney < itemPrice)
+    		if(clickTypeIn == ClickType.QUICK_MOVE)
+    			maxItemCanBuy = maxItemsCanBuy(itemPrice);
+    		
+    		if(this.tileEntity.currentMoney < itemPrice * maxItemCanBuy)
     			return ItemStack.EMPTY;
     		
-        	buyItems(itemPrice);
+    		if(maxItemCanBuy == 1)
+    			buyItems(itemPrice);
+    		else
+    			buyItemStack(itemPrice);
     		
-    		int freeSlot = this.outputContents.getFreeSlot();
-    		
-	    	if(!this.outputContents.isEmpty()) { 
-	    		
-	        	int slotIndex = this.outputContents.getItemStackIndex(this.tileEntity.getStockContents(slotId));
-	    		
-	    		if(slotIndex == 99 && freeSlot !=99) {
-	    			this.outputContents.setInventorySlotContents(freeSlot, this.tileEntity.getStockContents(slotId));
-	    			
-	    			InventoryHelper.dropInventoryItems(world, player, outputContents);
-	    			this.outputContents.clear();
-	        		return ItemStack.EMPTY;
-	    		} else {
-	    			this.outputContents.increaseStackSize(slotIndex, this.tileEntity.getStockContents(slotId));
-	    			InventoryHelper.dropInventoryItems(world, player, outputContents);
-	    			this.outputContents.clear();
-	    			return ItemStack.EMPTY;
-	    		}
-	    	} else {
-	    		this.outputContents.setInventorySlotContents(freeSlot, this.tileEntity.getStockContents(slotId));
-	    		InventoryHelper.dropInventoryItems(world, player, outputContents);
-	    		this.outputContents.clear();
-	    		return ItemStack.EMPTY;
-	    	}
+    		ItemStack is = new ItemStack(this.tileEntity.getStockContents(slotId).getItem(), maxItemCanBuy);
+    		this.outputContents.setInventorySlotContents(0, is);
+        	InventoryHelper.dropInventoryItems(world, player, outputContents);
+			this.outputContents.clear();
+    		return ItemStack.EMPTY;
     	} else {
     		return ItemStack.EMPTY;
     	}
-    }
-    
-    // Shift clicking
-    @Override
-    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
-        return super.transferStackInSlot(playerIn, index);
     }
     
     @Override
     public void onContainerClosed(PlayerEntity playerIn) {
     	// TODO Auto-generated method stub
     	this.tileEntity.dropMoney(playerIn);
+    	if(this.inputContents.getStackInSlot(0) != null)
+    		InventoryHelper.dropInventoryItems(world, playerIn, inputContents);
     	super.onContainerClosed(playerIn);
     }
 
@@ -267,5 +306,27 @@ public class StoreContainer extends Container {
     		this.tileEntity.currentMoney -= price;
     	else 
     		return;
+    }
+    
+    public void buyItemStack(int price) {
+    	if(this.tileEntity.currentMoney> price * maxItemsCanBuy(price))
+    		this.tileEntity.currentMoney -= price * maxItemsCanBuy(price);
+    	else 
+    		return;
+    }
+    
+    public int maxItemsCanBuy(int price) {
+    	int temp = this.tileEntity.currentMoney;
+    	int counter = 0;
+    	
+    	while (temp > 0 && temp - price >=0) {
+    		if(temp > price) {
+    			temp -= price;
+    			counter++;
+    		}
+    	}
+    	if(counter > 64)
+    		return 64;
+    	return counter;
     }
 }

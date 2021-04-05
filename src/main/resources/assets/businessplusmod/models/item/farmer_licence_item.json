@@ -4,6 +4,11 @@
 	"layer0": "businessplusmod:items/licence_farmer"
 	},
     "display": {
+        "gui": {
+	      "rotation": [ 0, 0, 0 ],
+	      "translation": [ 0, 0, 0],
+	      "scale":[ 0.925, 0.925, 0.925 ]
+	    },
 	    "thirdperson_righthand": {
 	      "rotation": [
 	        0,

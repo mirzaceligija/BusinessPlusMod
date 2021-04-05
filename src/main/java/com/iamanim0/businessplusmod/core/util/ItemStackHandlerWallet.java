@@ -3,6 +3,7 @@ package com.iamanim0.businessplusmod.core.util;
 import javax.annotation.Nonnull;
 
 import com.iamanim0.businessplusmod.BusinessPlusMod;
+import com.iamanim0.businessplusmod.core.init.ItemInit;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -34,7 +35,7 @@ public class ItemStackHandlerWallet extends ItemStackHandler {
 	  }
 	  if (stack.isEmpty()) return false;
 	  Item item = stack.getItem();
-	  if (item.isIn(ItemTags.getCollection().get(MONEY_TAG))) return true;
+	  if (item.isIn(ItemTags.getCollection().get(MONEY_TAG)) || item == ItemInit.CREDIT_CARD_ITEM.get().asItem()) return true;
 	  
 	  return false;
 	}

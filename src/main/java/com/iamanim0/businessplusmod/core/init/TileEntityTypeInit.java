@@ -1,11 +1,9 @@
 package com.iamanim0.businessplusmod.core.init;
 
 import com.iamanim0.businessplusmod.BusinessPlusMod;
-import com.iamanim0.businessplusmod.common.tiles.MarketTileEntity;
 import com.iamanim0.businessplusmod.common.tiles.StoreTileEntity;
 import com.iamanim0.businessplusmod.common.tiles.TradeInTileEntity;
 import com.iamanim0.businessplusmod.common.tiles.AtmTileEntity;
-import com.iamanim0.businessplusmod.common.tiles.VaultChestTileEntity;
 
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
@@ -16,14 +14,8 @@ public class TileEntityTypeInit {
 
 	public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, BusinessPlusMod.MOD_ID);
 	
-	public static final RegistryObject<TileEntityType<VaultChestTileEntity>> VAULT_CHEST = TILE_ENTITY_TYPES.register("vault_chest", 
-			() -> TileEntityType.Builder.create(VaultChestTileEntity::new, BlockInit.VAULT_CHEST.get()).build(null));
-	
 	public static final RegistryObject<TileEntityType<AtmTileEntity>> ATM = TILE_ENTITY_TYPES.register("atm", 
 			() -> TileEntityType.Builder.create(AtmTileEntity::new, BlockInit.ATM_BLOCK.get()).build(null));
-	
-	public static final RegistryObject<TileEntityType<MarketTileEntity>> MARKET = TILE_ENTITY_TYPES.register("market", 
-			() -> TileEntityType.Builder.create(MarketTileEntity::new, BlockInit.MARKET.get()).build(null));
 	
 	// == STORES == //
 	public static final RegistryObject<TileEntityType<StoreTileEntity>> STORE_MINER = TILE_ENTITY_TYPES.register("store_miner", 

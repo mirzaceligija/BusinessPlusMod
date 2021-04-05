@@ -109,6 +109,10 @@ public class TradeInTileEntity  extends TileEntity implements ITickableTileEntit
 	    }
 	}
 	
+	public String getCategory() {
+		return this.CATEGORY;
+	}
+	
 	public void generateStockContents() {	
 		if(this.CATEGORY == "miner")
 			generateStockContentsMINER();

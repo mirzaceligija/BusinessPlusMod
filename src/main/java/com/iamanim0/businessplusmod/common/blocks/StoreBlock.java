@@ -30,12 +30,21 @@ public class StoreBlock  extends HorizontalBlock {
 
 	private final String CATEGORY;
 	
-	private static final VoxelShape PARTIAL1 = Block.makeCuboidShape(0, 0, 0, 16, 1, 16);
-	private static final VoxelShape PARTIAL2 = Block.makeCuboidShape(3, 0, 2, 13, 7, 14);
+	//private static final VoxelShape PARTIAL1 = Block.makeCuboidShape(0, 0, 0, 16, 1, 16);
+	//private static final VoxelShape PARTIAL2 = Block.makeCuboidShape(3, 0, 2, 13, 7, 14);
 	
-	private static VoxelShape COMBINED_SHAPE = VoxelShapes.or(PARTIAL1, PARTIAL2);
+	private static final VoxelShape NPARTIAL1 = Block.makeCuboidShape(3, 1, 2, 13, 7, 14);
+	private static final VoxelShape NPARTIAL2 = Block.makeCuboidShape(0, 0, 0, 16, 1, 16);
+	
+	private static final VoxelShape SPARTIAL1 = Block.makeCuboidShape(2, 1, 3, 14, 7, 13);
+	private static final VoxelShape SPARTIAL2 = Block.makeCuboidShape(0, 0, 0, 16, 1, 16);
+
+	private static VoxelShape NCOMBINED_SHAPE = VoxelShapes.or(NPARTIAL1, NPARTIAL2);
+	private static VoxelShape SCOMBINED_SHAPE = VoxelShapes.or(SPARTIAL1, SPARTIAL2);
 	@SuppressWarnings("unused")
-	private static VoxelShape EMPTY_SPACE = VoxelShapes.combineAndSimplify(VoxelShapes.fullCube(), COMBINED_SHAPE, IBooleanFunction.ONLY_FIRST);
+	private static VoxelShape NEMPTY_SPACE = VoxelShapes.combineAndSimplify(VoxelShapes.fullCube(), NCOMBINED_SHAPE, IBooleanFunction.ONLY_FIRST);
+	@SuppressWarnings("unused")
+	private static VoxelShape SEMPTY_SPACE = VoxelShapes.combineAndSimplify(VoxelShapes.fullCube(), SCOMBINED_SHAPE, IBooleanFunction.ONLY_FIRST);
 	
 	public StoreBlock(Properties builder,  String category) {
 		super(builder);
@@ -79,7 +88,10 @@ public class StoreBlock  extends HorizontalBlock {
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 		// TODO Auto-generated method stub
-		return COMBINED_SHAPE;
+		if(state.get(HORIZONTAL_FACING) == Direction.NORTH || state.get(HORIZONTAL_FACING) == Direction.SOUTH)
+			return NCOMBINED_SHAPE;
+		else
+			return SCOMBINED_SHAPE;
 	}
 	
 

@@ -1,9 +1,14 @@
 {
 	"parent": "item/generated",
 	"textures": {
-	"layer0": "businessplusmod:items/credit_card00"
+	"layer0": "businessplusmod:items/credit_card"
 	},
   "display": {
+    "gui": {
+      "rotation": [ 30, 45, 0 ],
+      "translation": [ 0, 0, 0],
+      "scale":[ 0.825, 0.825, 0.825 ]
+    },
     "thirdperson_righthand": {
       "rotation": [
         0,

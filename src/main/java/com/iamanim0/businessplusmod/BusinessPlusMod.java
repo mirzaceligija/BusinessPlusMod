@@ -125,7 +125,7 @@ public class BusinessPlusMod
 		
 		@Override
 		public ItemStack createIcon() {
-			return ItemInit.DOLLAR_500.get().getDefaultInstance();
+			return ItemInit.CREDIT_CARD_ITEM.get().getDefaultInstance();
 		}
 
 		@Override
@@ -133,6 +133,7 @@ public class BusinessPlusMod
 			// TODO Auto-generated method stub			
 			
 			items.add(ItemInit.WALLET_ITEM.get().getDefaultInstance());
+			items.add(ItemInit.CREDIT_CARD_ITEM.get().getDefaultInstance());
 			
 			//Money
 			items.add(ItemInit.CENT_1.get().getDefaultInstance());
@@ -161,20 +162,15 @@ public class BusinessPlusMod
 			items.add(ItemInit.STORE_MINER.get().getDefaultInstance());
 			items.add(ItemInit.STORE_FARMER.get().getDefaultInstance());
 			
-			//Machines
+			//Startup & Businesses
 			items.add(ItemInit.TRADEIN_MINER_40.get().getDefaultInstance());
-			items.add(ItemInit.TRADEIN_MINER_100.get().getDefaultInstance());
 			items.add(ItemInit.TRADEIN_FARMER_40.get().getDefaultInstance());
+			items.add(ItemInit.TRADEIN_MINER_100.get().getDefaultInstance());
 			items.add(ItemInit.TRADEIN_FARMER_100.get().getDefaultInstance());
 			
 			//Other
-			//items.add(ItemInit.BANK.get().getDefaultInstance());
-			items.add(ItemInit.CREDIT_CARD_ITEM.get().getDefaultInstance());
-			//items.add(ItemInit.LICENCE_ITEM.get().getDefaultInstance());
-			//items.add(ItemInit.VAULT_CHEST_BLOCK.get().getDefaultInstance());
 			items.add(ItemInit.MONEY_PILE_BLOCK.get().getDefaultInstance());
 			items.add(ItemInit.ATM.get().getDefaultInstance());
-			// NEPOTREBNO items.add(ItemInit.MARKET.get().getDefaultInstance());
 			//super.fill(items);
 		}
     }

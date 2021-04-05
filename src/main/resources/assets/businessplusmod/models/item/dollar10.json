@@ -4,6 +4,11 @@
 	"layer0": "businessplusmod:items/dollar10"
 	},
   "display": {
+      "gui": {
+      "rotation": [ 30, 45, 0 ],
+      "translation": [ 0, 0, 0],
+      "scale":[ 0.825, 0.825, 0.825 ]
+    },
     "thirdperson_righthand": {
       "rotation": [
         0,

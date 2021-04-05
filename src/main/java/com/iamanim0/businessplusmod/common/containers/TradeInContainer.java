@@ -2,6 +2,7 @@ package com.iamanim0.businessplusmod.common.containers;
 
 import java.util.Objects;
 
+import com.iamanim0.businessplusmod.BusinessPlusMod;
 import com.iamanim0.businessplusmod.common.capability.provider.TradeInStateData;
 import com.iamanim0.businessplusmod.common.capability.storage.TradeInContents;
 import com.iamanim0.businessplusmod.common.capability.storage.TradeInStockContents;
@@ -11,15 +12,21 @@ import com.iamanim0.businessplusmod.core.init.ContainerTypeInit;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.ClickType;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 public class TradeInContainer extends Container{
+	
+	private static final ResourceLocation MINER_TAG = new ResourceLocation(BusinessPlusMod.MOD_ID, "tradeinoresitem");
+	private static final ResourceLocation FARMER_TAG = new ResourceLocation(BusinessPlusMod.MOD_ID, "farmeritem");
 	
 	public final TradeInTileEntity tileEntity;
 	private TradeInStockContents stockContents;
@@ -178,18 +185,23 @@ public class TradeInContainer extends Container{
     @Override
     public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, PlayerEntity player) {
     	
-    	if(clickTypeIn == ClickType.PICKUP_ALL || clickTypeIn == ClickType.QUICK_MOVE)
-			return ItemStack.EMPTY;
-    	// TODO Auto-generated method stub
+    	if(clickTypeIn == ClickType.PICKUP_ALL)
+    		return ItemStack.EMPTY;
+    	
 		try {
 			System.out.println(slotId + " " + dragType + " " + clickTypeIn);
 			if ((slotId >= 0 && //PLAYER INVENTORY
-                    slotId < 36 + 1) || (slotId == -999)) {
+                    slotId < 36) || (slotId == -999)) {
+				if (clickTypeIn == ClickType.QUICK_MOVE)
+					return playerInventorySlotClick(slotId, dragType, clickTypeIn, player);
+				
                 return super.slotClick(slotId, dragType, clickTypeIn, player);
             } else if (slotId >= 37 && // STOCK INVENTORY
                     slotId < 120 +1) {
             	return ItemStack.EMPTY;
             } else if (slotId == 36) {
+            	if (clickTypeIn == ClickType.QUICK_MOVE)
+					return inputInventorySlotClick(slotId, dragType, clickTypeIn, player);
             	return super.slotClick(slotId, dragType, clickTypeIn, player);
             } else {
             	return ItemStack.EMPTY;
@@ -200,10 +212,60 @@ public class TradeInContainer extends Container{
         }
     }
 
-    @Override
+    private ItemStack inputInventorySlotClick(int slotId, int dragType, ClickType clickTypeIn, PlayerEntity player) {
+		// TODO Auto-generated method stub
+    	ItemStack sourceStack = inputContents.getStackInSlot(0);
+
+    	
+    	if (!mergeItemStack(sourceStack, 0, VANILLA_SLOT_COUNT, false)) {
+	        return ItemStack.EMPTY;  // EMPTY_ITEM
+	      } else
+	    	  mergeItemStack(sourceStack, 0, VANILLA_SLOT_COUNT, false);
+    	
+    	return ItemStack.EMPTY;
+	}
+
+	private ItemStack playerInventorySlotClick(int slotId, int dragType, ClickType clickTypeIn, PlayerEntity player) {
+		// TODO Auto-generated method stub
+    	ItemStack sourceStack = player.inventory.getStackInSlot(slotId);
+    	
+    	if(sourceStack.getItem().isIn(ItemTags.getCollection().get(MINER_TAG)) && this.tileEntity.getCategory() == "miner"
+    			|| sourceStack.getItem().isIn(ItemTags.getCollection().get(FARMER_TAG)) && this.tileEntity.getCategory() == "farmer") {
+    		
+    		if(!this.inputContents.isEmpty())
+    			return ItemStack.EMPTY;
+    		
+    		player.inventory.setInventorySlotContents(slotId, ItemStack.EMPTY);
+        	this.inputContents.setInventorySlotContents(0, sourceStack);
+        	return ItemStack.EMPTY;
+		} else {
+			
+			if (slotId >= 0 && slotId < 9) { //HOTBAR CLICKED
+				
+		      if (!mergeItemStack(sourceStack, 9, VANILLA_SLOT_COUNT, false)) {
+		        return ItemStack.EMPTY;  // EMPTY_ITEM
+		      } else
+		    	  mergeItemStack(sourceStack, 9, VANILLA_SLOT_COUNT, false);
+		    } else if (slotId >= 9 && slotId < 37) { //INVENTORY CLICKED
+		      if (!mergeItemStack(sourceStack, 0, 9, false)){
+		        return ItemStack.EMPTY;  // EMPTY_ITEM
+		      } else
+		    	  mergeItemStack(sourceStack, 0, 9, false);
+		    } else {
+		      return ItemStack.EMPTY;
+		    }
+			return ItemStack.EMPTY;
+		}
+	}
+
+	@Override
     public void onContainerClosed(PlayerEntity playerIn) {
     	// TODO Auto-generated method stub
     	this.tileEntity.dropMoney(playerIn);
+    	if(this.inputContents.getStackInSlot(0) != null)
+    		InventoryHelper.dropInventoryItems(world, playerIn, inputContents);
+    	
+    	this.inputContents.getStackInSlot(0);
     	super.onContainerClosed(playerIn);
     }
 }

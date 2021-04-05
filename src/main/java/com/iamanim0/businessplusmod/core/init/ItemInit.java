@@ -2,7 +2,6 @@ package com.iamanim0.businessplusmod.core.init;
 
 import com.iamanim0.businessplusmod.BusinessPlusMod;
 import com.iamanim0.businessplusmod.common.items.BusinessLicenceFarmerItem;
-import com.iamanim0.businessplusmod.common.items.BusinessLicenceItem;
 import com.iamanim0.businessplusmod.common.items.BusinessLicenceMinerItem;
 import com.iamanim0.businessplusmod.common.items.CreditCardItem;
 import com.iamanim0.businessplusmod.common.items.MoneyItem;
@@ -21,7 +20,7 @@ public class ItemInit {
 	/* ITEMS */
 	
 	public static final RegistryObject<WalletItem> WALLET_ITEM = ITEMS.register("wallet_item",  () -> new WalletItem(new Item.Properties().maxStackSize(1).group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
-	public static final RegistryObject<BusinessLicenceItem> LICENCE_ITEM = ITEMS.register("licence_item", () -> new BusinessLicenceItem(new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
+	//public static final RegistryObject<BusinessLicenceItem> LICENCE_ITEM = ITEMS.register("licence_item", () -> new BusinessLicenceItem(new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
 	public static final RegistryObject<CreditCardItem> CREDIT_CARD_ITEM = ITEMS.register("credit_card_item", () -> new CreditCardItem(new Item.Properties().maxStackSize(1).group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
 	
 	//LICENCES
@@ -50,11 +49,8 @@ public class ItemInit {
 
     
 	/*BLOCK ITEMS*/
-    public static final RegistryObject<BlockItem> BANK = ITEMS.register("bank", () -> new BlockItem(BlockInit.BANK.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
 	public static final RegistryObject<BlockItem> ATM = ITEMS.register("atm", () -> new BlockItem(BlockInit.ATM_BLOCK.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
-	public static final RegistryObject<BlockItem> VAULT_CHEST_BLOCK = ITEMS.register("vault_chest", () -> new BlockItem(BlockInit.VAULT_CHEST.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
 	public static final RegistryObject<BlockItem> MONEY_PILE_BLOCK = ITEMS.register("money_pile", () -> new BlockItem(BlockInit.MONEY_PILE.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
-	public static final RegistryObject<BlockItem> MARKET = ITEMS.register("market", () -> new BlockItem(BlockInit.MARKET.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));
 
 	// === STORES === //
 	public static final RegistryObject<BlockItem> STORE_MINER = ITEMS.register("store_miner", () -> new BlockItem(BlockInit.STORE_MINER.get(), new Item.Properties().group(BusinessPlusMod.BUSINESSPLUS_GROUP)));

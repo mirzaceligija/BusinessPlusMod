@@ -10,7 +10,7 @@
         }
     },
     "result": {
-        "item": "minecraft:money_pile",
+        "item": "businessplusmod:money_pile",
         "count": 1
     }
 }

@@ -10,10 +10,10 @@
             "item": "minecraft:quartz_block"
         },
         "C": {
-            "item": "minecraft:wheat"
+            "item": "minecraft:emerald"
         },
         "B": {
-            "item": "businessplusmod:dollar500"
+            "item": "minecraft:wheat"
         }
     },
     "result": {

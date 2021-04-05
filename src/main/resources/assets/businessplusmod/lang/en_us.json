@@ -32,18 +32,12 @@
 	"block.businessplusmod.tradein_farmer_40": "StartUp - Food 40%",
 	"block.businessplusmod.tradein_farmer_100": "Business - Food 100%",
 	
-	"block.businessplusmod.bank": "Bank",
-	"block.businessplusmod.market": "Market",
 	"block.businessplusmod.atm": "ATM Machine",
-	"block.businessplusmod.vault_chest": "Vault Chest",
 	"block.businessplusmod.money_pile": "Money Pile",
 	
 	"container.store": "Store",
 	"container.tradein": "TradeIn",
-	
-	"container.vault_chest": "Vault Chest",
 	"container.wallet": "Wallet",
-	"container.market": "Market",
 	
 	"container.businessplusmod.atm_in": "ATM Input",
 	"container.businessplusmod.atm_out": "ATM Output",

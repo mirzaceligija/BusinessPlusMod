@@ -1,5 +1,5 @@
 {
-  "parent": "businessplusmod:block/tradein_miner_100",
+  "parent": "businessplusmod:block/tradein_farmer_100",
   "display": {
     "gui": {
       "rotation": [ 30, 45, 0 ],

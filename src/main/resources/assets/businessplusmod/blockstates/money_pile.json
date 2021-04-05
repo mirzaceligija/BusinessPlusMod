@@ -1,5 +1,8 @@
 {
-	"variants": {
-		"": { "model": "businessplusmod:block/money_pile" }
-	}
+  "variants": {
+    "facing=north": { "model": "businessplusmod:block/money_pile" },
+    "facing=south": { "model": "businessplusmod:block/money_pile", "y": 180 },
+    "facing=west":  { "model": "businessplusmod:block/money_pile", "y": 270 },
+    "facing=east":  { "model": "businessplusmod:block/money_pile", "y": 90 }
+  }
 }

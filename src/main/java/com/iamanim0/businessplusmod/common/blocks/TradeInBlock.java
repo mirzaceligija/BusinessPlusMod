@@ -42,25 +42,64 @@ public class TradeInBlock extends HorizontalBlock {
     };
     */
 	
-    //BIG Office
-    private static final VoxelShape PARTIAL1 = Block.makeCuboidShape(3, 1, 3, 13, 12, 12);
-	private static final VoxelShape PARTIAL2 = Block.makeCuboidShape(0, 0, 0, 16, 1, 16);
-    private static VoxelShape COMBINED_SHAPE = VoxelShapes.or(PARTIAL1, PARTIAL2);
-    
-    //Small Office
-    private static final VoxelShape PARTIAL1B = Block.makeCuboidShape(0, 0, 0, 16, 1, 16);
-	private static final VoxelShape PARTIAL2B = Block.makeCuboidShape(3, 1, 3, 13, 6, 12);
-	private static final VoxelShape PARTIAL3B = Block.makeCuboidShape(6, 5, 8, 7, 8, 9);
-	private static final VoxelShape PARTIAL4B = Block.makeCuboidShape(4, 8, 8, 12, 12, 9);
-	private static final VoxelShape PARTIAL5B = Block.makeCuboidShape(9, 5, 8, 10, 8, 9);
-    private static VoxelShape COMBINED_SHAPEB = VoxelShapes.or(PARTIAL1B, PARTIAL2B, PARTIAL3B, PARTIAL4B, PARTIAL5B);
+	/* === STARTUP VOXEL SHAPES */
 
+    // STARTUP BASE
+    private static final VoxelShape STARTUP_BASE = Block.makeCuboidShape(0, 0, 0, 16, 1, 16);
+    
+    //STARTUP NORTH & SOUTH
+    private static final VoxelShape STARTUP1NS = Block.makeCuboidShape(3, 1, 3, 4, 6, 13);
+	private static final VoxelShape STARTUP2NS = Block.makeCuboidShape(12, 1, 3, 13, 6, 13);
+	private static final VoxelShape STARTUP3NS = Block.makeCuboidShape(4, 1, 3, 12, 6, 4);
+	private static final VoxelShape STARTUP4NS = Block.makeCuboidShape(4, 1, 4, 12, 5, 12);
+	private static final VoxelShape STARTUP5NS = Block.makeCuboidShape(4, 1, 12, 12, 6, 13);
+	private static final VoxelShape STARTUP6NS = Block.makeCuboidShape(4, 8, 7.5, 12, 12, 8.5);
+	private static final VoxelShape STARTUP7NS = Block.makeCuboidShape(6.25, 5, 7.75, 6.75, 8, 8.25);
+	private static final VoxelShape STARTUP8NS = Block.makeCuboidShape(9.25, 5, 7.75, 9.75, 8, 8.25);
+
+	private static VoxelShape COMBINED_SHAPE_STARTUP_NS = VoxelShapes.or(STARTUP_BASE, STARTUP1NS, STARTUP2NS, STARTUP3NS, STARTUP4NS, STARTUP5NS, STARTUP6NS, STARTUP7NS, STARTUP8NS);
+	private static VoxelShape EMPTY_SPACE_STARTUP_NS = VoxelShapes.combineAndSimplify(VoxelShapes.fullCube(), COMBINED_SHAPE_STARTUP_NS, IBooleanFunction.ONLY_FIRST);
 	
-	//private static VoxelShape COMBINED_SHAPE = VoxelShapes.or(PARTIAL1, PARTIAL2, PARTIAL3, PARTIAL4, PARTIAL5);
-	@SuppressWarnings("unused")
-	private static VoxelShape EMPTY_SPACE = VoxelShapes.combineAndSimplify(VoxelShapes.fullCube(), COMBINED_SHAPE, IBooleanFunction.ONLY_FIRST);
-	@SuppressWarnings("unused")
-	private static VoxelShape EMPTY_SPACEB = VoxelShapes.combineAndSimplify(VoxelShapes.fullCube(), COMBINED_SHAPEB, IBooleanFunction.ONLY_FIRST);
+    
+    // STARTUP WEST & EAST
+    private static final VoxelShape STARTUP1WE = Block.makeCuboidShape(7.5, 8, 4, 8.5, 12, 12);
+	private static final VoxelShape STARTUP2WE = Block.makeCuboidShape(7.75, 5, 9.25, 8.25, 8, 9.75);
+	private static final VoxelShape STARTUP3WE = Block.makeCuboidShape(7.75, 5, 6.25, 8.25, 8, 6.75);
+	private static final VoxelShape STARTUP4WE = Block.makeCuboidShape(3, 1, 3, 4, 6, 13);
+	private static final VoxelShape STARTUP5WE = Block.makeCuboidShape(12, 1, 3, 13, 6, 13);
+	private static final VoxelShape STARTUP6WE = Block.makeCuboidShape(4, 1, 3, 12, 6, 4);
+	private static final VoxelShape STARTUP7WE = Block.makeCuboidShape(4, 1, 12, 12, 6, 13);
+	private static final VoxelShape STARTUP8WE = Block.makeCuboidShape(4, 1, 4, 12, 5, 12);
+
+	private static VoxelShape COMBINED_SHAPE_STARTUP_WE = VoxelShapes.or(STARTUP_BASE, STARTUP1WE, STARTUP2WE, STARTUP3WE, STARTUP4WE, STARTUP5WE, STARTUP6WE, STARTUP7WE, STARTUP8WE);
+	private static VoxelShape EMPTY_SPACE_STARTUP_WE = VoxelShapes.combineAndSimplify(VoxelShapes.fullCube(), COMBINED_SHAPE_STARTUP_WE, IBooleanFunction.ONLY_FIRST);
+	
+	/* === BUSINESS VOXEL SHAPES */
+
+    // BUSINESS BASE
+    private static final VoxelShape BUSINESS_BASE = Block.makeCuboidShape(0, 0, 0, 16, 1, 16);
+    private static final VoxelShape BUSINESS1NSWE = Block.makeCuboidShape(4, 1, 4, 12, 9, 12);
+	private static final VoxelShape BUSINESS2NSWE = Block.makeCuboidShape(3, 1, 3, 4, 10, 13);
+	private static final VoxelShape BUSINESS3NSWE = Block.makeCuboidShape(12, 1, 3, 13, 10, 13);
+	private static final VoxelShape BUSINESS4NSWE = Block.makeCuboidShape(4, 1, 3, 12, 10, 4);
+	private static final VoxelShape BUSINESS5NSWE = Block.makeCuboidShape(4, 1, 12, 12, 10, 13);
+	
+	//BUSINESS NORTH & SOUTH
+	private static final VoxelShape BUSINESS6NS = Block.makeCuboidShape(4, 12, 7.5, 12, 16, 8.5);
+	private static final VoxelShape BUSINESS7NS = Block.makeCuboidShape(6.25, 9, 7.75, 6.75, 12, 8.25);
+	private static final VoxelShape BUSINESS8NS = Block.makeCuboidShape(9.25, 9, 7.75, 9.75, 12, 8.25);
+
+	private static VoxelShape COMBINED_SHAPE_BUSINESS_NS = VoxelShapes.or(BUSINESS_BASE, BUSINESS1NSWE, BUSINESS2NSWE, BUSINESS3NSWE, BUSINESS4NSWE, BUSINESS5NSWE, BUSINESS6NS, BUSINESS7NS, BUSINESS8NS);
+	private static VoxelShape EMPTY_SPACE_BUSINESS_NS = VoxelShapes.combineAndSimplify(VoxelShapes.fullCube(), COMBINED_SHAPE_BUSINESS_NS, IBooleanFunction.ONLY_FIRST);
+	
+	//BUSINESS WEST & EAST
+	private static final VoxelShape BUSINESS6WE = Block.makeCuboidShape(7.5, 12, 4, 8.5, 16, 12);
+	private static final VoxelShape BUSINESS7WE = Block.makeCuboidShape(7.75, 9, 9.25, 8.25, 12, 9.75);
+	private static final VoxelShape BUSINESS8WE = Block.makeCuboidShape(7.75, 9, 6.25, 8.25, 12, 6.75);
+
+	private static VoxelShape COMBINED_SHAPE_BUSINESS_WE = VoxelShapes.or(BUSINESS_BASE, BUSINESS1NSWE, BUSINESS2NSWE, BUSINESS3NSWE, BUSINESS4NSWE, BUSINESS5NSWE, BUSINESS6WE, BUSINESS7WE, BUSINESS8WE);
+	private static VoxelShape EMPTY_SPACE_BUSINESS_WE = VoxelShapes.combineAndSimplify(VoxelShapes.fullCube(), COMBINED_SHAPE_BUSINESS_WE, IBooleanFunction.ONLY_FIRST);
+	
 	
 	public TradeInBlock(Properties builder, int sellingRate, String category) {
 		super(builder);
@@ -70,13 +109,11 @@ public class TradeInBlock extends HorizontalBlock {
 		this.setDefaultState(this.stateContainer.getBaseState().with(HORIZONTAL_FACING, Direction.NORTH));
 	}
 	
-
 	@Override
 	protected void fillStateContainer(Builder<Block, BlockState> builder) {
 		super.fillStateContainer(builder);
 		builder.add(HORIZONTAL_FACING);
-	}
-	
+	}	
 	
 	//Not needed probably
 	
@@ -90,7 +127,6 @@ public class TradeInBlock extends HorizontalBlock {
 	
 	@Override
 	public boolean hasTileEntity(BlockState state) {
-		// TODO Auto-generated method stub
 		return true;
 	}
 	
@@ -108,23 +144,6 @@ public class TradeInBlock extends HorizontalBlock {
 		else
 			return  new TradeInTileEntity(TileEntityTypeInit.TRADEIN_MINER_100.get(),this.SELLING_RATE, this.CATEGORY);
 	}
-
-	/*
-	@Override
-	public TileEntity createNewTileEntity(IBlockReader worldIn) {
-		// TODO Auto-generated method stub
-		if(this.CATEGORY == "miner" && this.SELLING_RATE == 100)
-			return  new TradeInTileEntity(TileEntityTypeInit.TRADEIN_MINER_100.get(),this.SELLING_RATE, this.CATEGORY);
-		else if(this.CATEGORY == "miner" && this.SELLING_RATE == 40)
-			return  new TradeInTileEntity(TileEntityTypeInit.TRADEIN_MINER_40.get(),this.SELLING_RATE, this.CATEGORY);
-		else if(this.CATEGORY == "farmer" && this.SELLING_RATE == 100)
-			return  new TradeInTileEntity(TileEntityTypeInit.TRADEIN_FARMER_100.get(),this.SELLING_RATE, this.CATEGORY);
-		else if(this.CATEGORY == "farmer" && this.SELLING_RATE == 40)
-			return  new TradeInTileEntity(TileEntityTypeInit.TRADEIN_FARMER_40.get(),this.SELLING_RATE, this.CATEGORY);
-		else
-			return  new TradeInTileEntity(TileEntityTypeInit.TRADEIN_MINER_100.get(),this.SELLING_RATE, this.CATEGORY);
-	}
-	*/
 	
 	@Override
 	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player,
@@ -149,23 +168,41 @@ public class TradeInBlock extends HorizontalBlock {
 	@Override
 	public VoxelShape getCollisionShape(BlockState state, IBlockReader reader, BlockPos pos) {
 		// TODO Auto-generated method stub
-		//return super.getCollisionShape(state, reader, pos);
-		if(this.SELLING_RATE == 100)
-			return COMBINED_SHAPE;
-		return COMBINED_SHAPEB;
+		
+		if(this.SELLING_RATE == 40 && (state.get(HORIZONTAL_FACING) == Direction.NORTH || state.get(HORIZONTAL_FACING) == Direction.SOUTH))
+			return EMPTY_SPACE_STARTUP_NS;
+		else if(this.SELLING_RATE == 40 && (state.get(HORIZONTAL_FACING) == Direction.EAST || state.get(HORIZONTAL_FACING) == Direction.WEST))
+			return EMPTY_SPACE_STARTUP_WE;
+
+		else if(this.SELLING_RATE == 100 && (state.get(HORIZONTAL_FACING) == Direction.NORTH || state.get(HORIZONTAL_FACING) == Direction.SOUTH))
+			return EMPTY_SPACE_BUSINESS_NS;
+		else if(this.SELLING_RATE == 100 && (state.get(HORIZONTAL_FACING) == Direction.EAST || state.get(HORIZONTAL_FACING) == Direction.WEST))
+			return EMPTY_SPACE_BUSINESS_WE;
+
+		else
+			return EMPTY_SPACE_STARTUP_NS;
 	}
 	
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 		// TODO Auto-generated method stub
-		if(this.SELLING_RATE == 100)
-			return COMBINED_SHAPE;
-		return COMBINED_SHAPEB;
+		if(this.SELLING_RATE == 40 && (state.get(HORIZONTAL_FACING) == Direction.NORTH || state.get(HORIZONTAL_FACING) == Direction.SOUTH))
+			return COMBINED_SHAPE_STARTUP_NS;
+		else if(this.SELLING_RATE == 40 && (state.get(HORIZONTAL_FACING) == Direction.EAST || state.get(HORIZONTAL_FACING) == Direction.WEST))
+			return COMBINED_SHAPE_STARTUP_WE;
+
+		else if(this.SELLING_RATE == 100 && (state.get(HORIZONTAL_FACING) == Direction.NORTH || state.get(HORIZONTAL_FACING) == Direction.SOUTH))
+			return COMBINED_SHAPE_BUSINESS_NS;
+		else if(this.SELLING_RATE == 100 && (state.get(HORIZONTAL_FACING) == Direction.EAST || state.get(HORIZONTAL_FACING) == Direction.WEST))
+			return COMBINED_SHAPE_BUSINESS_WE;
+
+		else
+			return COMBINED_SHAPE_STARTUP_NS;
 	}
 	
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing());
+        return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite());
     }
     
 	@SuppressWarnings("deprecation")
@@ -179,4 +216,5 @@ public class TradeInBlock extends HorizontalBlock {
 		// TODO Auto-generated method stub
 		return state.with(HORIZONTAL_FACING, direction.rotate(state.get(HORIZONTAL_FACING)));
 	}
+
 }
