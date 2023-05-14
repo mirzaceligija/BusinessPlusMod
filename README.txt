@@ -1,3 +1,5 @@
+Curseforge Link: https://www.curseforge.com/minecraft/mc-mods/business-plus-mod
+
 -------------------------------------------
 Source installation information for modders
 -------------------------------------------
